@@ -1,0 +1,57 @@
+flowchart TB
+
+  AliceProRegistry(["🗄️ Data Registry (HR)"])
+  AliceProProjects["📁 Projects 🌿"]
+  AliceProTasks["📁 Tasks 🌿"]
+  PAp1("📄 P-Ah-1")
+  PAp2("📄 P-Ah-2")
+  TAp1("📄 T-Ah-1")
+  TAp2("📄 T-Ah-2")
+  TAp3("📄 T-Ah-3")
+
+  subgraph hr.acme.example
+    AliceProRegistry -- :hasDataRegistration --> AliceProProjects
+    AliceProProjects -- ldp:contains --> PAp1
+    AliceProProjects -- ldp:contains --> PAp2
+    AliceProRegistry -- :hasDataRegistration --> AliceProTasks
+    AliceProTasks -- ldp:contains --> TAp1
+    AliceProTasks -- ldp:contains --> TAp2
+    AliceProTasks -- ldp:contains --> TAp3
+    PAp1 -- ex:hasTask --> TAp1
+    PAp1 -- ex:hasTask --> TAp2
+    PAp2 -- ex:hasTask --> TAp3
+  end
+
+  AliceRemoteRegistry(["🗄️ Remote Data Registry"])
+  AliceRemoteProjects[["🗃 Projects 🌿"]]
+  AliceRemoteProjectsOfAlice["🗂️ Projects 🌿 - 🏢 ACME"]
+  AliceDataGrantProjectsInPro>"🎗️ Projects - ACME HR"]
+  AliceDataGrantProjectsInHome>"🎗️ Projects - ACME R&D"]
+
+  subgraph auth.alice.example
+    AliceRemoteRegistry -- :hasRemoteDataRegistration --> AliceRemoteProjects
+    AliceRemoteProjects -- :hasRemoteAgentDataRegistration --> AliceRemoteProjectsOfAlice
+    AliceRemoteProjectsOfAlice -- :satisfiesDataGrant --> AliceDataGrantProjectsInPro
+    AliceRemoteProjectsOfAlice -- :satisfiesDataGrant --> AliceDataGrantProjectsInHome
+  end
+
+  AliceHomeRegistry(["🗄️ Data Registry (R&D)"])
+  AliceHomeProjects["📁 Projects 🌿"]
+  AliceHomeTasks["📁 Tasks 🌿"]
+  PAh1("📄 P-Ar-1")
+  TAh1("📄 T-Ar-1")
+  TAh2("📄 T-Ar-2")
+
+  subgraph rnd.acme.example
+    AliceHomeRegistry -- :hasDataRegistration --> AliceHomeProjects
+    AliceHomeProjects -- ldp:contains --> PAh1
+    AliceHomeRegistry -- :hasDataRegistration --> AliceHomeTasks
+    AliceHomeTasks -- ldp:contains --> TAh1
+    AliceHomeTasks -- ldp:contains --> TAh2
+    PAh1 -- ex:hasTask --> TAh1
+    PAh1 -- ex:hasTask --> TAh2
+  end
+
+
+  AliceDataGrantProjectsInPro -- :hasDataRegistration --> AliceProProjects
+  AliceDataGrantProjectsInHome -- :hasDataRegistration --> AliceHomeProjects

@@ -1,0 +1,7 @@
+erDiagram
+  DataGrant }o--|{ DataInstance : hasDataInstance
+  DataGrant }o--|| DataRegistration : hasDataRegistration
+  DataRegistration |o--o{ DataInstance : "ldp:contains"
+  DataGrant {
+    scopeOfGrant SelectedInstances
+  }

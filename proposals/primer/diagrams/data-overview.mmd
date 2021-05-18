@@ -1,0 +1,124 @@
+graph TB
+
+  AliceProRegistry(["Data Registry -  👩 Alice (Professional)"])
+  AliceProProjects["Projects"]
+  AliceProTasks["Tasks"]
+  PAp1("Pap1")
+  PAp2("Pap2")
+  TAp1("TAp1")
+  TAp2("TAp2")
+  TAp3("TAp3")
+
+  subgraph pro.alice.example
+    AliceProRegistry -- :hasDataRegistration --> AliceProProjects
+    AliceProProjects -- ldp:contains --> PAp1
+    AliceProProjects -- ldp:contains --> PAp2
+    AliceProRegistry -- :hasDataRegistration --> AliceProTasks
+    AliceProTasks -- ldp:contains --> TAp1
+    AliceProTasks -- ldp:contains --> TAp2
+    AliceProTasks -- ldp:contains --> TAp3
+    PAp1 -- ex:hasTAsk --> TAp1
+    PAp1 -- ex:hasTAsk --> TAp2
+    PAp2 -- ex:hasTAsk --> TAp3
+  end
+
+  AliceHomeRegistry(["Data Registry -  👩 Alice (Home)"])
+  AliceHomeProjects(["Data Registration - Projects"])
+  PAh1(["Data Instance - Pah1"])
+
+  subgraph home.alice.example
+    AliceHomeRegistry -- :hasDataRegistration --> AliceHomeProjects
+    AliceHomeProjects -- ldp:contains --> PAh1
+  end
+
+  OmniRndRegistry(["Data Registry - 🏢 Omni (R&D)"])
+  OmniRndProjects([Data Registration - Projects])
+  POr1([Data Instance - POr1])
+  POr2([Data Instance - POr2])
+  POr3([Data Instance - POr3])
+
+  subgraph rnd.omni.example
+    OmniRndRegistry -- :hasDataRegistration --> OmniRndProjects
+    OmniRndProjects -- ldp:contains --> POr1
+    OmniRndProjects -- ldp:contains --> POr2
+    OmniRndProjects -- ldp:contains --> POr3
+  end
+
+  OmniHrRegistry(["Data Registry - 🏢 Omni (HR)"])
+  OmniHrProjects([Data Registration - Projects])
+  POh1([Data Instance - POh1])
+  POh2([Data Instance - POh2])
+  POh3([Data Instance - POh3])
+
+  subgraph hr.omni.example
+    OmniHrRegistry -- :hasDataRegistration --> OmniHrProjects
+    OmniHrProjects -- ldp:contains --> POh1
+    OmniHrProjects -- ldp:contains --> POh2
+    OmniHrProjects -- ldp:contains --> POh3
+  end
+
+  AcmeEuRegistry(["Data Registry - 🏢 ACME (EU)"])
+  AcmeEuProjects([Data Registration - Projects])
+  PAe1([Data Instance - PAe1])
+  PAe2([Data Instance - PAe2])
+  PAe3([Data Instance - PAe3])
+
+  subgraph eu.acme.example
+    AcmeEuRegistry -- :hasDataRegistration --> AcmeEuProjects
+    AcmeEuProjects -- ldp:contains --> PAe1
+    AcmeEuProjects -- ldp:contains --> PAe2
+    AcmeEuProjects -- ldp:contains --> PAe3
+  end
+
+  AcmeNaRegistry(["Data Registry - 🏢 ACME (NA)"])
+  AcmeNaProjects([Data Registration - Projects])
+  PAn1([Data Instance - PAn1])
+  PAn2([Data Instance - PAn2])
+  PAn3([Data Instance - PAn3])
+
+  subgraph na.Acme.example
+    AcmeNaRegistry -- :hasDataRegistration --> AcmeNaProjects
+    AcmeNaProjects -- ldp:contains --> PAn1
+    AcmeNaProjects -- ldp:contains --> PAn2
+    AcmeNaProjects -- ldp:contains --> PAn3
+  end
+
+
+  %% AccessReceiptOmni2Alice([Access Receipt from Omni])
+  %% DataGrantOmni2AliceOnProjects([Data Grant - AllInstances])
+  %% RemoteProjectsAlice(["Remote Data Registration - 🗃️ Projects"])
+  %% RemoteProjectsAliceFromAlice(["Remote Agent Data Registration | Alice 👩 ➡️ 👩 "])
+  %% RemoteProjectsAliceFromOmni(["Remote Agent Data Registration | Omni 🏢 ➡️ 👩 "])
+  %% ApplicationRegistration([Application Registration - Performchart])
+  %% AccessReceiptForPerformchart([Access Receipt for Performchart])
+  %% RemoteDataGrantAlice2PerformchartOnProjects(["Remote Data Grant (AllRemoteFromAgent) 👩 ➡️ 🤖 Performchart | 🗃️ Projects"])
+
+  %% subgraph authz.alice.example
+   %% AccessReceiptOmni2Alice -- :hasDataGrant --> DataGrantOmni2AliceOnProjects
+   %% RemoteProjectsAlice -- :hasRemoteAgentDataRegistration --> RemoteProjectsAliceFromAlice
+   %% RemoteProjectsAlice -- :hasRemoteAgentDataRegistration --> RemoteProjectsAliceFromOmni
+   %% RemoteProjectsAliceFromOmni -- :hasAccessReceipt --> AccessReceiptOmni2Alice
+   %% RemoteProjectsAliceFromOmni -- :satisfiesDataGrant --> DataGrantOmni2AliceOnProjects
+   %% ApplicationRegistration -- :hasAccessReceipt --> AccessReceiptForPerformchart
+   %% AccessReceiptForPerformchart -- :hasDataGrant --> RemoteDataGrantAlice2PerformchartOnProjects
+   %% RemoteDataGrantAlice2PerformchartOnProjects -- :hasRemoteDataFromAgent --> RemoteProjectsAliceFromOmni
+  %% end
+
+
+  %% DataGrantOmni2AliceOnProjects -- :hasDataRegistration --> OmniRndProjects
+  %% RemoteProjectsAliceFromAlice -- :hasDataRegistration --> AliceProProjects
+  %% RemoteProjectsAliceFromAlice -- :hasDataRegistration --> AliceHomeProjects
+  %% RemoteProjectsAliceFromOmni -- :hasDataRegistration --> OmniRndProjects
+
+  %% granted
+  %% classDef granted fill:#D5E8D4,stroke:#82B366
+  %% class AccessReceiptOmni2Alice,DataGrantOmni2AliceOnProjects granted
+  %% class OmniRndProjects,Por1,Por2,Por3 granted
+
+  %% linkStyle 0,1,2,3,4 stroke:#82B366
+
+  %% unknown
+  %% classDef unknown fill:#F5F5F5,stroke:gray
+  %% class Registry unknown
+
+  %% linkStyle 2 stroke:gray

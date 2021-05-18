@@ -1,0 +1,71 @@
+graph TB
+  AccessReceipt([Access Receipt from ACME])
+  DataGrant([Data Grant - SelectedInstances])
+  ReferencedDataGrant([Referenced Data Grant - InheritSelected ])
+
+  subgraph alice.example
+   AccessReceipt -- :hasDataGrant --> DataGrant %%0
+   DataGrant -- :hasReferencedDataGrant --> ReferencedDataGrant %%1
+  end
+
+  DataGrant -- :hasDataRegistration --> Projects %%2
+  ReferencedDataGrant -- :hasDataRegistration --> Tasks %%3
+  DataGrant -- :hasDataInstance --> P1 %%4
+  DataGrant -- :hasDataInstance --> P3 %%5
+
+  Registry([Data Registry ACME])
+  Projects([Data Registration - ACME Projects])
+  Tasks([Data Registration - ACME TAsks])
+  P1([Data Instance - P1])
+  P2([Data Instance - P2])
+  P3([Data Instance - P3])
+  T1([Data Instance - T1])
+  T2([Data Instance - T2])
+  T3([Data Instance - T3])
+  T4([Data Instance - T4])
+  T5([Data Instance - T5])
+
+  subgraph acme.example
+    Registry -- :hasDataRegistration --> Projects %%6
+    Registry -- :hasDataRegistration --> Tasks %%7
+    Projects -- ldp:contains --> P1 %%8
+    Projects -- ldp:contains --> P2 %%9
+    Projects -- ldp:contains --> P3 %%10
+    P1 -- ex:hasTask --> T1 %%11
+    P1 -- ex:hasTask --> T2 %%12
+    P2 -- ex:hasTask --> T3 %%13
+    P2 -- ex:hasTask --> T4 %%14
+    P3 -- ex:hasTask --> T5 %%15
+  end
+
+  %% granted
+  classDef granted fill:#D5E8D4,stroke:#82B366
+  class AccessReceipt,DataGrant,ReferencedDataGrant granted
+  class P1,P3,T1,T2,T5 granted
+
+  linkStyle 0 stroke:#82B366
+  linkStyle 1 stroke:#82B366
+  linkStyle 4 stroke:#82B366
+  linkStyle 5 stroke:#82B366
+  linkStyle 11 stroke:#82B366
+  linkStyle 12 stroke:#82B366
+  linkStyle 15 stroke:#82B366
+
+  %% unknown
+  classDef unknown fill:#F5F5F5,stroke:gray
+  class Registry,P2,T3,T4 unknown
+
+  linkStyle 6 stroke:gray
+  linkStyle 7 stroke:gray
+  linkStyle 8 stroke:gray
+  linkStyle 9 stroke:gray
+  linkStyle 10 stroke:gray
+  linkStyle 13 stroke:gray
+  linkStyle 14 stroke:gray
+
+  %% denied
+  classDef denied fill:#F8CECC,stroke:#B85450
+  class Projects,Tasks denied
+
+  linkStyle 2 stroke:#B85450
+  linkStyle 3 stroke:#B85450

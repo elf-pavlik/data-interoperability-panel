@@ -1,0 +1,47 @@
+graph TB
+  AccessReceipt([Access Receipt from ACME])
+  DataGrant([Data Grant - SelectedInstances])
+
+  subgraph alice.example
+   AccessReceipt -- :hasDataGrant --> DataGrant %%0
+  end
+
+  DataGrant -- :hasDataRegistration --> Projects %%1
+  DataGrant -- :hasDataInstance --> P1 %%2
+  DataGrant -- :hasDataInstance --> P3 %%3
+
+  Registry([Data Registry - Omni])
+  Projects([Data Registration - ACME Projects])
+  P1([Data Instance - P1])
+  P2([Data Instance - P2])
+  P3([Data Instance - P3])
+
+  subgraph acme.example
+    Registry -- :hasDataRegistration --> Projects %%4
+    Projects -- ldp:contains --> P1 %%5
+    Projects -- ldp:contains --> P2 %%6
+    Projects -- ldp:contains --> P3 %%7
+  end
+
+  %% granted
+  classDef granted fill:#D5E8D4,stroke:#82B366
+  class AccessReceipt,DataGrant,P1,P3 granted
+
+  linkStyle 0 stroke:#82B366
+  linkStyle 2 stroke:#82B366
+  linkStyle 3 stroke:#82B366
+
+  %% unknown
+  classDef unknown fill:#F5F5F5,stroke:gray
+  class Registry,P2 unknown
+
+  linkStyle 4 stroke:gray
+  linkStyle 5 stroke:gray
+  linkStyle 6 stroke:gray
+  linkStyle 7 stroke:gray
+
+  %% denied
+  classDef denied fill:#F8CECC,stroke:#B85450
+  class Projects denied
+
+  linkStyle 1 stroke:#B85450

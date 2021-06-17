@@ -6,9 +6,9 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 800b43329, updated Tue May 25 14:13:32 2021 -0700" name="generator">
+  <meta content="Bikeshed version 3d6a6fcbb, updated Wed Jun 16 16:19:39 2021 -0700" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/" rel="canonical">
-  <meta content="bb86f2f56d53c3292a7ad91ca98c3b90368323b5" name="document-revision">
+  <meta content="60becfd1a806e597727ebeffaca775c92133abfd" name="document-revision">
 <style>
 
   .sequence-diagram, .flowchart-diagram {
@@ -525,7 +525,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability Primer</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-06-11">11 June 2021</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="profile-and-date"><span class="content">Editor’s Draft, <time class="dt-updated" datetime="2021-06-17">17 June 2021</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -822,7 +822,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <figcaption>Alice’s Access Grant Registry</figcaption>
    </figure>
    <h3 class="heading settled" data-level="2.4" id="proaliceexample"><span class="secno">2.4. </span><span class="content">pro.alice.example</span><a class="self-link" href="#proaliceexample"></a></h3>
-   <p><img class="flowchart-diagram" src="diagrams/pro.alice.example.mmd.svg"></p>
+   <p><img class="flowchart-diagram" src="diagrams/pro.alice.example.flow.mmd.png"></p>
    <h4 class="heading settled" data-level="2.4.1" id="data-registry"><span class="secno">2.4.1. </span><span class="content">Data Registry</span><a class="self-link" href="#data-registry"></a></h4>
    <figure>
 <pre class="include-code highlight"><c- nn>alice-pro</c-><c- p>:</c-><c- f>71e96aaa-f3dc-4263-97d6-a5b4c83524cb</c->
@@ -945,7 +945,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <figcaption>Alice’s <strong>pro</strong> task 4</figcaption>
    </figure>
    <h3 class="heading settled" data-level="2.5" id="homealiceexample"><span class="secno">2.5. </span><span class="content">home.alice.example</span><a class="self-link" href="#homealiceexample"></a></h3>
-   <p><img class="flowchart-diagram" src="diagrams/home.alice.example.mmd.svg"></p>
+   <p><img class="flowchart-diagram" src="diagrams/home.alice.example.flow.mmd.png"></p>
    <h4 class="heading settled" data-level="2.5.1" id="data-registry①"><span class="secno">2.5.1. </span><span class="content">Data Registry</span><a class="self-link" href="#data-registry①"></a></h4>
    <figure>
 <pre class="include-code highlight"><c- nn>alice-home</c-><c- p>:</c-><c- f>2d3d97b4-a26d-434e-afa2-e3bc8e8e2b56</c->
@@ -1057,7 +1057,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessNeedGroup</c-> <c- g>&lt;#need-group-pm></c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataGrant</c->
       <c- g>&lt;#data-grant-project-pro></c-> <c- p>,</c->
-      <c- g>&lt;#data-grant-project-home></c-> <c- p>.</c->
+      <c- g>&lt;#data-grant-task-pro></c-> <c- p>,</c->
+      <c- g>&lt;#data-grant-project-home></c-> <c- p>,</c->
+      <c- g>&lt;#data-grant-task-home></c-> <c- p>.</c->
 
 <c- g>&lt;#grant-subject></c->
   <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AccessGrantSubject</c-> <c- p>;</c->
@@ -1069,30 +1071,30 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-pro</c-><c- p>:</c-><c- f>773605f0-b5bf-4d46-878d-5c167eac8b5d</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>hasReferencedDataGrant</c-> <c- g>&lt;#data-grant-task-pro></c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>.</c->
 
 <c- g>&lt;#data-grant-task-pro></c->
-  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>ReferencedDataGrant</c-> <c- p>;</c->
+  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataGrant</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Task</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-pro</c-><c- p>:</c-><c- f>4d594c61-7cff-484a-a1d2-1f353ee4e1e7</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>;</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>inheritsFromGrant</c-> <c- g>&lt;#data-grant-project-pro></c-> <c- p>.</c->
 
 <c- g>&lt;#data-grant-project-home></c->
   <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataGrant</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-home</c-><c- p>:</c-><c- f>f6ccd3a4-45ea-4f98-8a36-98eac92a6720</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>hasReferencedDataGrant</c-> <c- g>&lt;#data-grant-task-home></c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>.</c->
 
 <c- g>&lt;#data-grant-task-home></c->
-  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>ReferencedDataGrant</c-> <c- p>;</c->
+  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataGrant</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Task</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-home</c-><c- p>:</c-><c- f>92f43be4-d12c-4ca3-9bd6-c18e83167b2f</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>;</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>inheritsFromGrant</c-> <c- g>&lt;#data-grant-project-home></c-> <c- p>.</c->
 </pre>
     <figcaption>Alice’s access grant for Projectron</figcaption>
    </figure>
@@ -1133,8 +1135,10 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
       <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#grant-subject</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessNeedGroup</c-> <c- g>&lt;#need-group-pm></c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataGrant</c->
-      <c- nn>alice-home</c-><c- p>:</c-><c- f>92f43be4-d12c-4ca3-9bd6-c18e83167b2f\#data-grant-project-pro</c-> <c- p>,</c->
-      <c- nn>alice-home</c-><c- p>:</c-><c- f>92f43be4-d12c-4ca3-9bd6-c18e83167b2f\#data-grant-project-home</c-> <c- p>.</c->
+      <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-project-pro</c-> <c- p>,</c->
+      <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-task-pro</c-> <c- p>,</c->
+      <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-project-home</c-> <c- p>,</c->
+      <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-task-home</c-> <c- p>.</c->
 
 <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#grant-subject</c->
   <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AccessGrantSubject</c-> <c- p>;</c->
@@ -1146,30 +1150,32 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-pro</c-><c- p>:</c-><c- f>773605f0-b5bf-4d46-878d-5c167eac8b5d</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>hasReferencedDataGrant</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-task-pro</c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>.</c->
 
 <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-task-pro</c->
-  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>ReferencedDataGrant</c-> <c- p>;</c->
+  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataGrant</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Task</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-pro</c-><c- p>:</c-><c- f>4d594c61-7cff-484a-a1d2-1f353ee4e1e7</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>;</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>inheritsFromGrant</c->
+      <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-project-pro</c-> <c- p>.</c->
 
 <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-project-home</c->
   <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataGrant</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-home</c-><c- p>:</c-><c- f>f6ccd3a4-45ea-4f98-8a36-98eac92a6720</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>hasReferencedDataGrant</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-task-home</c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AllInstances</c-> <c- p>.</c->
 
 <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-task-home</c->
-  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>ReferencedDataGrant</c-> <c- p>;</c->
+  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataGrant</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>registeredShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Task</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistration</c-> <c- nn>alice-home</c-><c- p>:</c-><c- f>92f43be4-d12c-4ca3-9bd6-c18e83167b2f</c-> <c- p>;</c->
     <c- nn>interop</c-><c- p>:</c-><c- f>accessMode</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Read</c-><c- p>,</c-> <c- nn>acl</c-><c- p>:</c-><c- f>Write</c-> <c- p>;</c->
-    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>.</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>scopeOfGrant</c-> <c- nn>interop</c-><c- p>:</c-><c- f>InheritInstances</c-> <c- p>;</c->
+    <c- nn>interop</c-><c- p>:</c-><c- f>inheritsFromGrant</c->
+      <c- nn>alice-auth</c-><c- p>:</c-><c- f>3fcef0f6-5807-4f1b-b77a-63d64df25a69\#data-grant-project-home</c-> <c- p>.</c->
 </pre>
     <figcaption>Alice’s access receipt for Projectron</figcaption>
    </figure>
@@ -1329,9 +1335,9 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    <h3 class="heading settled" data-level="2.9" id="sequence-diagrams"><span class="secno">2.9. </span><span class="content">Sequence diagrams</span><a class="self-link" href="#sequence-diagrams"></a></h3>
    <h4 class="heading settled" data-level="2.9.1" id="combined-oidc-provider-and-authorization-agent"><span class="secno">2.9.1. </span><span class="content">Combined OIDC Provider and Authorization Agent</span><a class="self-link" href="#combined-oidc-provider-and-authorization-agent"></a></h4>
    <h5 class="heading settled" data-level="2.9.1.1" id="authorization-agent-stores-registrations-and-grants"><span class="secno">2.9.1.1. </span><span class="content">Authorization Agent stores Registrations and Grants</span><a class="self-link" href="#authorization-agent-stores-registrations-and-grants"></a></h5>
-   <p><img class="sequence-diagram" src="diagrams/idp-aa-combined.mmd.svg"></p>
+   <p><img class="sequence-diagram" src="diagrams/idp-aa-combined.seq.mmd.svg"></p>
    <h5 class="heading settled" data-level="2.9.1.2" id="authorization-agent-gets-registrations-and-grants-from-storage"><span class="secno">2.9.1.2. </span><span class="content">Authorization Agent gets Registrations and Grants from Storage</span><a class="self-link" href="#authorization-agent-gets-registrations-and-grants-from-storage"></a></h5>
-   <p><img class="sequence-diagram" src="diagrams/idp-aa-combined-external-storage.mmd.svg"></p>
+   <p><img class="sequence-diagram" src="diagrams/idp-aa-combined-external-storage.seq.mmd.svg"></p>
   </main>
   <div data-fill-with="conformance">
    <h2 class="no-ref no-num heading settled" id="w3c-conformance"><span class="content">Conformance</span><a class="self-link" href="#w3c-conformance"></a></h2>

@@ -1,0 +1,121 @@
+flowchart TB
+
+  AliceHomeRegistry(["🗃 Data Registry (Home)"])
+  AliceHomeProjects["📁 Projects 🌿"]
+  AliceHomeTasks["📁 Tasks 🌿"]
+  PAh1("📄 P-Ah-1")
+  PAh1RFT("Tasks of P-Ah-1")
+  TAh1("📄 T-Ah-1")
+  TAh2("📄 T-Ah-2")
+  TAh3("📄 T-Ah-3")
+
+  subgraph home.alice.example
+    AliceHomeRegistry -- :hasDataRegistration --> AliceHomeProjects
+    AliceHomeProjects -- ldp:contains --> PAh1
+    PAh1 -- tbd:hasReferencedList --> PAh1RFT
+    AliceHomeRegistry -- :hasDataRegistration --> AliceHomeTasks
+    AliceHomeTasks -- ldp:contains --> TAh1
+    AliceHomeTasks -- ldp:contains --> TAh2
+    AliceHomeTasks -- ldp:contains --> TAh3
+    PAh1 x-. pm:hasTask .-x TAh1
+    PAh1 x-. pm:hasTask .-x TAh2
+    PAh1RFT --> TAh1
+    PAh1RFT --> TAh2
+  end
+
+  DataGrantAllInstances>"🎟️ Data Grant - AllInstances"]
+  DataGrantSelectedInstances>"🎟️ Data Grant - SelectedInstances"]
+  DataGrantInheritInstancesPro>"🎟️ Data Grant - InheritInstances"]
+  DataGrantInheritInstancesHome>"🎟️ Data Grant - InheritInstances"]
+  RemoteDataRegistry(["Remote Data Registry"])
+  RemoteDataRegistration[["Remote Data Registration - Projects 🌿"]]
+  RemoteAgentDataRegistrationAcme["Remote Agent Data Registration - ACME"]
+  RemoteDataGrantAcmeProjects>"🎟️ Remote Data Grant - AllRemoteFromAgent"]
+  RemoteDataGrantAcmeTasks>"🎟️ Remote Data Grant - InheritRemoteInstances"]
+  RemoteAgentDataRegistrationOmni["Remote Agent Data Registration - Omni"]
+  RemoteDataGrantOmniProjects>"🎟️ Remote Data Grant - SelectedRemote"]
+  RemoteDataGrantOmniTasks>"🎟️ Remote Data Grant - InheritRemoteInstances"]
+
+  subgraph auth.alice.example
+    RemoteDataRegistry -- :hasRemoteDataRegistration ---> RemoteDataRegistration
+    RemoteDataRegistration -- :hasRemoteAgentDataRegistration --> RemoteAgentDataRegistrationAcme
+    RemoteDataRegistration -- :hasRemoteAgentDataRegistration --> RemoteAgentDataRegistrationOmni
+    ApplicationRegistration -- :hasAccessReceipt --> AccessReceipt
+    AccessReceipt -- :hasDataGrant --> DataGrantAllInstances
+    AccessReceipt -- :hasDataGrant --> DataGrantSelectedInstances
+    AccessReceipt -- :hasDataGrant --> DataGrantInheritInstancesPro
+    AccessReceipt -- :hasDataGrant --> DataGrantInheritInstancesHome
+    AccessReceipt -- :hasDataGrant --> RemoteDataGrantAcmeProjects
+    AccessReceipt -- :hasDataGrant ----> RemoteDataGrantOmniProjects
+    DataGrantInheritInstancesPro <-- :inheritsFromGrant + ^ --> DataGrantSelectedInstances
+    DataGrantInheritInstancesHome <-- :inheritsFromGrant + ^ --> DataGrantAllInstances
+    RemoteDataGrantAcmeProjects -- :hasRemoteAgentDataRegistration --> RemoteAgentDataRegistrationAcme
+    RemoteDataGrantAcmeTasks <-- :inheritsFromGrant + ^ --> RemoteDataGrantAcmeProjects
+    RemoteDataGrantOmniTasks <-- :inheritsFromGrant + ^ --> RemoteDataGrantOmniProjects
+  end
+
+  DataGrantAllInstances -- :hasDataRegistration --> AliceHomeProjects
+  DataGrantSelectedInstances -- :hasDataInstance ---> PAp2
+  RemoteDataGrantOmniProjects -- :hasDataGrant --> DataGrantOmni2AliceProjectsNa
+
+
+  AliceProRegistry(["🗃 Data Registry (Professional)"])
+  AliceProProjects["📁 Projects 🌿"]
+  AliceProTasks["📁 Tasks 🌿"]
+  PAp1("📄 P-Ap-1")
+  PAp1RFT("Tasks of P-Ap-1")
+  PAp2("📄 P-Ap-2")
+  PAp2RFT("Tasks of P-Ap-2")
+  TAp1("📄 T-Ap-1")
+  TAp2("📄 T-Ap-2")
+  TAp3("📄 T-Ap-3")
+  TAp4("📄 T-Ap-4")
+
+  subgraph pro.alice.example
+    AliceProRegistry -- :hasDataRegistration --> AliceProProjects
+    AliceProProjects -- ldp:contains --> PAp1
+    AliceProProjects -- ldp:contains --> PAp2
+    PAp1 -- tbd:hasReferencedList --> PAp1RFT
+    PAp2 -- tbd:hasReferencedList --> PAp2RFT
+    AliceProRegistry -- :hasDataRegistration --> AliceProTasks
+    AliceProTasks -- ldp:contains --> TAp1
+    AliceProTasks -- ldp:contains --> TAp2
+    AliceProTasks -- ldp:contains --> TAp3
+    AliceProTasks -- ldp:contains --> TAp4
+    PAp1 x-. pm:hasTask .-x TAp1
+    PAp1 x-. pm:hasTask .-x TAp2
+    PAp2 x-. pm:hasTask .-x TAp3
+    PAp1RFT --> TAp1
+    PAp1RFT --> TAp2
+    PAp2RFT --> TAp3
+  end
+
+  AccessGrantAcme2Alice["Access Grant - Alice"]
+  DataGrantAcme2AliceProjectsRnd>"🎟️ Data Grant - AllInstances"]
+  DataGrantAcme2AliceProjectsFinance>"🎟️ Data Grant - SelectedInstances"]
+  DataGrantAcme2AliceTasksRnd>"🎟️ Data Grant - InheritInstances"]
+  DataGrantAcme2AliceTasksFinance>"🎟️ Data Grant - InheritInstances"]
+
+  subgraph auth.acme.example
+    AccessGrantAcme2Alice -- :hasDataGrant --> DataGrantAcme2AliceProjectsRnd
+    AccessGrantAcme2Alice -- :hasDataGrant --> DataGrantAcme2AliceProjectsFinance
+    AccessGrantAcme2Alice -- :hasDataGrant --> DataGrantAcme2AliceTasksRnd
+    AccessGrantAcme2Alice -- :hasDataGrant --> DataGrantAcme2AliceTasksFinance
+    DataGrantAcme2AliceTasksRnd <-- :inheritsFromGrant + ^--> DataGrantAcme2AliceProjectsRnd
+    DataGrantAcme2AliceTasksFinance <-- :inheritsFromGrant + ^--> DataGrantAcme2AliceProjectsFinance
+  end
+
+  RemoteAgentDataRegistrationAcme -- :satisfiesDataGrant --> DataGrantAcme2AliceProjectsRnd
+  RemoteAgentDataRegistrationAcme -- :satisfiesDataGrant --> DataGrantAcme2AliceProjectsFinance
+
+  AccessGrantOmni2Alice["Access Grant - Alice"]
+  DataGrantOmni2AliceProjectsNa>"🎟️ Data Grant - AllInstances"]
+  DataGrantOmni2AliceTasksNa>"🎟️ Data Grant - InheritInstances"]
+
+  subgraph auth.omni.example
+    AccessGrantOmni2Alice -- :hasDataGrant --> DataGrantOmni2AliceProjectsNa
+    AccessGrantOmni2Alice -- :hasDataGrant --> DataGrantOmni2AliceTasksNa
+    DataGrantOmni2AliceTasksNa -- :inheritsFromGrant + ^ --> DataGrantOmni2AliceProjectsNa
+  end
+
+  RemoteAgentDataRegistrationOmni -- :satisfiesDataGrant --> DataGrantOmni2AliceProjectsNa

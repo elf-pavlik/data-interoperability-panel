@@ -3,79 +3,55 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 
 # Agent
 ##############################################################################
-<#ProfileTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:contains <#AgentTree> ,
-              <#ApplicationRegistrySetTree> ,
-              <#DataRegistrySetTree> ,
-              <#AccessGrantRegistrySetTree> ,
-              <#AccessReceiptRegistrySetTree> ,
-              <#RemoteDataRegistrySetTree> ,
-              st:AllowAll .
 
 <#AgentTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:AgentShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:AgentShape .
 
 <#AccessInboxTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
+  st:expectsType st:Container ;
   st:contains <#AccessReceiptTree> ,
-              <#AccessRequestTree> ,
-              st:AllowNone .
+              <#AccessRequestTree> .
 
-<#ApplicationRegistrySetTree>
+<#RegistrySetTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:ApplicationRegistrySetShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:RegistrySetShape .
 
-<#DataRegistrySetTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:DataRegistrySetShape> .
-
-<#AccessGrantRegistrySetTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:AccessGrantRegistrySetShape> .
-
-<#AccessReceiptRegistrySetTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:AccessReceiptRegistrySetShape> .
-
-<#RemoteDataRegistrySetTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:RemoteDataRegistrySetShape> .
-
-# Application Registry
+# Agent Registry
 ##############################################################################
 # Ensure the registry container graph contains a valid
-# ApplicationRegistry instance, and the resource inside of
-# it are valid ApplicationRegistration instances.
+# AgentRegistry instance, and the resource inside of
+# it are valid AgentRegistration instances.
 ##############################################################################
-<#ApplicationRegistryTree>
+<#AgentRegistryTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:ApplicationRegistryShape> ;
+  st:expectsType st:Container ;
+  st:shape interops:AgentRegistryShape ;
   st:contains <#ApplicationRegistrationTree> ,
-                st:AllowNone .
+              <#SocialAgentRegistrationTree> .
 
 # Application Registration
 ##############################################################################
 # Ensure the registration container graph contains a valid
-# ApplicationRegistration instance. Applications have freedom to store
-# whatever data internal to their operation that they like within
+# ApplicationRegistration instance.
 ##############################################################################
 <#ApplicationRegistrationTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:ApplicationRegistrationShape> ;
-  st:contains <#AccessReceiptTree> ,
-                st:AllowAll .
+  st:expectsType st:Container ;
+  st:shape <interops:ApplicationRegistrationShape> .
+
+# Social Agent Registration
+##############################################################################
+# Ensure the registration container graph contains a valid
+# SocialAgentRegistration instance.
+##############################################################################
+<#SocialAgentRegistrationTree>
+  a st:ShapeTree ;
+  st:expectsType st:Container ;
+  st:shape <interops:SocialAgentRegistrationShape> .
 
 # Data Registry
 ##############################################################################
@@ -85,10 +61,9 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#DataRegistryTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:DataRegistryShape> ;
-  st:contains <#DataRegistrationTree> ,
-                st:AllowNone .
+  st:expectsType st:Container ;
+  st:shape interops:DataRegistryShape ;
+  st:contains <#DataRegistrationTree> .
 
 # Data Registration
 ##############################################################################
@@ -98,8 +73,8 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#DataRegistrationTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:DataRegistrationShape> .
+  st:expectsType st:Container ;
+  st:shape interops:DataRegistrationShape .
 
 # Access Grant Registry
 ##############################################################################
@@ -109,11 +84,10 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#AccessGrantRegistryTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:AccessGrantRegistryShape> ;
+  st:expectsType st:Container ;
+  st:shape interops:AccessGrantRegistryShape ;
   st:contains <#AccessGrantTree> ,
-              <#AccessInvitationTree> ,
-              st:AllowNone .
+              <#AccessInvitationTree> .
 
 # Access Grant
 ##############################################################################
@@ -121,8 +95,8 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#AccessGrantTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:AccessGrantShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:AccessGrantShape .
 
 # Data Grant
 ##############################################################################
@@ -130,17 +104,17 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#DataGrantTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:DataGrantShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:DataGrantShape .
 
-# Referenced Data Grant
+# Inherited Data Grant
 ##############################################################################
-# Ensure the grant resource graph contains a valid ReferencedDataGrant instance
+# Ensure the grant resource graph contains a valid InheritedDataGrant instance
 ##############################################################################
-<#ReferencedDataGrantTree>
+<#InheritedDataGrantTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:ReferencedDataGrantShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:InheritedDataGrantShape .
 
 # Access Invitation
 ##############################################################################
@@ -149,8 +123,8 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#AccessInvitationTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:AccessInvitationShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:AccessInvitationShape .
 
 # Access Receipt Registry
 ##############################################################################
@@ -160,10 +134,9 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#AccessReceiptRegistryTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:AccessReceiptRegistryShape> ;
-  st:contains <#AccessReceiptTree> ,
-              st:AllowNone .
+  st:expectsType st:Container ;
+  st:shape interops:AccessReceiptRegistryShape ;
+  st:contains <#AccessReceiptTree> .
 
 # Access Receipt
 ##############################################################################
@@ -171,56 +144,13 @@ PREFIX interops: <https://shapes.pub/drafts/ns/solid/interop#>
 ##############################################################################
 <#AccessReceiptTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:AccessReceiptShape> .
-
-# Remote Data Registry
-##############################################################################
-# Ensure the registry container graph contains a valid
-# RemoteDataRegistry instance, and the resources inside of
-# it are valid RemoteDataRegistration instances.
-##############################################################################
-<#RemoteDataRegistryTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:RemoteDataRegistryShape> ;
-  st:contains <#RemoteDataRegistrationTree> ,
-              st:AllowNone .
-
-# Remote Data Registration
-##############################################################################
-# Ensure the remote data registration container graph contains a valid
-# RemoteDataRegistration instance, and the resources inside of
-# it are valid RemoteAgentDataRegistration instances.
-##############################################################################
-<#RemoteDataRegistrationTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:RemoteDataRegistrationShape> ;
-  st:contains <#RemoteAgentDataRegistrationTree> ,
-              st:AllowNone .
-
-# Remote Agent Data Registration
-##############################################################################
-# Ensure the receipt resource graph contains a valid RemoteAgentDataRegistration
-##############################################################################
-<#RemoteAgentDataRegistrationTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:validatedBy <interops:RemoteAgentDataRegistrationShape> ;
-  st:contains <#DataGrantTree> ,
-              <#ReferencedDataGrantTree> ,
-              st:AllowNone .
+  st:expectsType st:Resource ;
+  st:shape interops:AccessReceiptShape .
 
 # Application
 ##############################################################################
-<#ApplicationProfileTree>
-  a st:ShapeTree ;
-  st:expectsType st:ShapeTreeContainer ;
-  st:contains <#ApplicationTree> ,
-              st:AllowAll .
-              
+
 <#ApplicationTree>
   a st:ShapeTree ;
-  st:expectsType st:ShapeTreeResource ;
-  st:validatedBy <interops:ApplicationShape> .
+  st:expectsType st:Resource ;
+  st:shape interops:ApplicationShape .

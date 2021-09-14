@@ -1,37 +1,38 @@
 Access Needs {#needs}
 =====================
 
-## Overview ## {#needs-overview}
-
-[=Agents=] or [=Applications=] in the [=ecosystem=] often require access to
-data controlled by some other [=Agent=]. Consequently, a common way to explain
+[=Social Agents=] and [=Applications=] in the [=ecosystem=] often 
+require access to data controlled by some other [=Social Agent=]. 
+Consequently, a common way to explain
 and communicate data needs between these parties is required.
 
-A given [=Agent=] or [=Application=] expresses their access needs by
-providing one or more [=Access Need Groups=] to the [=Agent=] controlling
-the data they require access to. The channels through which these may be
-communicated are detailed in [[#authz-workflows]].
+A given [=Social Agent=] or [=Application=] expresses their access needs by
+providing one or more [=Access Need Groups=] to the [=Social Agent=] 
+controlling the data they require access to. The channels through which 
+these may be communicated are detailed in [[SAI-API#authz-workflows]].
 
 Each [=Access Need Group=] is associated with up to three types of needs:
 
 * [=Access Needs=] represent a need to access a particular type of data in 
-    a [=Data Registry=] or [=Remote Data Registry=], 
-    identified by the [=shape tree=] type. 
+    a [=Data Registry=] identified by the [=shape tree=] type. 
 * [=Trusted Needs=] represent a need for elevated access to entire [=Registries=],
-    [=Registry Sets=], or the [=Identity Profile Document=] for the [=Agent=]
+    as well as the [=Identity Profile Document=] or [=Registry Set=] for 
+    the [=Social Agent=].
 
-[=Access Need Groups=] are essential to an [=Agent's=] decision-making
+[=Access Need Groups=] are essential to a [=Social Agent's=] decision-making
 when determining whether to grant access, as illustrated in the 
-[[#present-grant]] workflow. They are stored as part of the [=Access Grant=] 
+[[SAI-API#present-grant]] workflow. They are stored as part of the [=Access Grant=] 
 in the [=Access Grant Registry=].
 
-## Data Model ## {#needs-datamodel}
+Note: See
+[Solid Application Interoperability Operations and API](https://solid.github.io/data-interoperability-panel/api/#needs)
+for a detailed explanation of how Access Needs should be processed.
 
-### Access Need Group ### {#needs-access-need-group}
+## Access Need Group ## {#needs-access-need-group}
 
 An <dfn>Access Need Group</dfn> is a collection of [=Access Needs=]
-and/or [=Trusted Needs=] that a given [=Agent=] and/or [=Application=] 
-uses to communicate an access request to other [=Agents=].
+and/or [=Trusted Needs=] that a given [=Social Agent=] and/or [=Application=] 
+uses to communicate an access request to other [=Social Agents=].
 
 An [=Access Need Group=] links to an [=Access Decorator Index=] of
 different [=Access Decorator Series=] that explain the [=Access Need Group=]
@@ -39,29 +40,14 @@ and [=Access Needs=] in different languages. Each [=Access Decorator Series=]
 points to an [=Access Decorator Resource=], which contains the actual 
 language-specific content mappings.
 
-<figure id="ttl-access-need-group">
-  <figcaption>An example [=Access Need Group=]</figcaption>
-  <pre highlight="turtle">
-  <#ng-project-management>
-    a interop:AccessNeedGroup ;
-    interop:accessNecessity interop:accessRequired ;
-    interop:accessScenario interop:PersonalAccess ;
-    interop:authenticatesAs interop:Pilot ;
-    interop:hasAccessDecoratorIndex nn:index
-    interop:hasAccessNeed <#need-project> .
-  </pre>
-</figure>
+[Class Definition](interop.ttl#AccessNeedGroup) -
+[Shape Definition](interop.shex#AccessNeedGroupShape)
 
 <table class="classinfo data" align="left" id="classAccessNeedGroup">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessNeedGroup](interop.ttl#AccessNeedGroup)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -92,8 +78,8 @@ language-specific content mappings.
     </tr>
     <tr>
       <td>authenticatesAs</td>
-      <td>[=Agent=] or `interop:Pilot`</td>
-      <td>[=Agent=] or [=Agent=] piloting an [=Application=]</td>
+      <td>`interop:SocialAgent` or `interop:Application`</td>
+      <td>Access will be granted to the [=Social Agent=] or [=Application=]</td>
     </tr>
     <tr>
       <td>hasAccessNeed</td>
@@ -108,28 +94,22 @@ language-specific content mappings.
   </tbody>
 </table>
 
-The [AccessNeedGroupShape](#shexAccessNeedGroup) is used to validate an
-instance of the [AccessNeedGroup](#classAccessNeedGroup) class.
+<figure>
+  <figcaption>An example [=Access Need Group=]</figcaption>  
+  <pre class=include-code>
+  path: snippets/projectron.example/projectron.example.ttl
+  highlight: turtle
+  show: 19-25
+  </pre> 
+</figure>
 
-<pre highlight="turtle" id="shexAccessNeedGroup">
-<#AccessNeedGroupShape> {
-  a [ interop:AccessNeedGroup ] ;
-  interop:accessNecessity [ interop:AccessRequired interop:AccessOptional ] ;
-  interop:accessScenario [ interop:PersonalAccess interop:SharedAccess ] ;
-  interop:authenticatesAs IRI ;
-  interop:hasAccessNeed IRI+ ;
-  interop:hasAccessNeedOverride IRI* ;
-  interop:hasAccessDecoratorIndex IRI
-}
-</pre>
-
-### Access Need ### {#needs-access-need}
+## Access Need ## {#needs-access-need}
 
 An <dfn>Access Need</dfn> represents the requirement of one specific type
 of data represented by a [=shape tree=], as part of an [=Access Need Group=].
 
 Each [=Access Need=] represents a request to access, create, or manage
-all or a subset of data in [=Data Registries=] and/or [=Remote Data Registries=].
+all or a subset of data in [=Data Registries=].
 
 In a [=Data Registry=], they can also request access to specific 
 [=Data Instances=] associated with a [=Data Registration=] for a given 
@@ -139,7 +119,7 @@ In a [=Data Registry=], they can also request access to specific
 It is often the case that a [=shape tree=] which virtually references 
 other [=shape trees=] will be assigned to an [=Access Need=]. The 
 referenced [=shape trees=] can then be assigned to 
-[=Referenced Access Needs=] that the [=Access Need=] links to.
+[=Access Needs=] that inherit from the referencing [=Access Need=].
 
 Specific [=Data Instances=] may be requested by explicitly
 associating them with the [=Access Need=] via
@@ -149,38 +129,23 @@ Each [=Access Need=] has one or more [=access modes=], and a property that
 indicates the necessity of the [=Access Need=]; *required* or
 *optional*. For example, an [=Access Need=] for read access to
 [=shape tree=] `N` can be identified as a required item in the
-[=Access Need Group=].
+[=Access Need Group=]. In cases where `acl:Write` or `acl:Append` permit
+the ability to create new [=Data Instances=], the
+[interop:creatorAccessMode](interop.ttl#creatorAccessMode)
+allows the resultant modes for the creator of the resource to be
+specified.
 
 [=Access Needs=] are described using language-specific
 [=Access Need Decorators=].
 
-<figure id="ttl-access-need">
-  <figcaption>An example [=Access Need=]</figcaption>
-  <pre highlight="turtle">
-  <#need-project>
-      a interop:AccessNeed ;
-      interop:inAccessNeedGroup <#need-group-pm> ;
-      interop:registeredShapeTree pm:ProjectTree ;        
-      interop:hasAccessNeedDecorator nn-index:projectDecorator
-      interop:accessNecessity interop:accessRequired ;
-      interop:accessMode acl:read, acl:write, acl:Control ;        
-      interop:hasReferencedAccessNeed 
-          <#need-issue>, <#need-task>, <#need-release>, <#need-document> ;
-      interop:hasDataGrant <#data-grant-project> ;
-      interop:hasRemoteDataGrant <#remote-data-grant-project> .  
-  </pre>
-</figure>
+[Class Definition](interop.ttl#AccessNeed) -
+[Shape Definition](interop.shex#AccessNeedGroup)
 
 <table class="classinfo data" align="left" id="classAccessNeed">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessNeed](interop.ttl#AccessNeed)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -197,7 +162,7 @@ indicates the necessity of the [=Access Need=]; *required* or
       <td>hasAccessNeedDecorator</td>
       <td>[AccessNeedDecorator](#classAccessNeedDecorator)</td>
       <td>Decorator that explains the reason for the access need in the
-      preferred language of the [=Agent=]</td>
+      preferred language of the [=Social Agent=]</td>
     </tr>
     <tr>
       <td>registeredShapeTree</td>
@@ -209,7 +174,7 @@ indicates the necessity of the [=Access Need=]; *required* or
       <td>`st:ShapeTreeDecorator`</td>
       <td>Decorator associated with the [=shape tree=] that describes the
       name of the shape-tree and what data it represents in the preferred
-      language of the [=Agent=]</td>
+      language of the [=Social Agent=]</td>
     </tr>
     <tr>
       <td>hasDataInstance</td>
@@ -222,6 +187,14 @@ indicates the necessity of the [=Access Need=]; *required* or
       <td>accessMode</td>
       <td>`acl:Read, acl:Write, acl:Control, acl:Append`</td>
       <td>Requested modes of access for the [=Access Need=]</td>
+    </tr>
+    <tr>
+      <td>creatorAccessMode</td>
+      <td>`acl:Read, acl:Write, acl:Control, acl:Append`</td>
+      <td>Requested mode of access for the creator of a Data Instance. 
+        Adds to the set of modes linked via 
+        `interop:accessMode`. Only valid when `accessMode` includes
+        `acl:Write` or `acl:Append`</td>
     </tr>
     <tr>
       <td>accessNecessity</td>
@@ -241,182 +214,29 @@ indicates the necessity of the [=Access Need=]; *required* or
       [=Access Need=] `st:supports`</td>
     </tr>        
     <tr>
-      <td>hasReferencedAccessNeed</td>
-      <td>[ReferencedAccessNeed](#classReferencedAccessNeed)</td>
-      <td>[=Referenced Access Need=] linked to [=Access Need=], whose
-      [=shape tree=] `st:references` the [=shape tree=] associated
-      with the [=Referenced Access Need=].
-      </td>
+      <td>inheritsFromNeed</td>
+      <td>[AccessNeed](#classAccessNeed)</td>
+      <td>Links to another [=Access Need=] whose registeredShapeTree
+      references the shape tree associated with the current
+      [=Access Need=].</td>
     </tr>
-    <tr>
-      <td>hasDataGrant</td>
-      <td>[DataGrant](#classDataGrant)</td>
-      <td>[=Data Grant=] associated with the [=Access Need=],
-      established when the [=Access Grant=] is created</td>
-    </tr>
-    <tr>
-      <td>hasRemoteDataGrant</td>
-      <td>[RemoteDataGrant](#classRemoteDataGrant)</td>
-      <td>[=Remote Data Grant=] associated with the [=Access Need=],
-      established when the [=Access Grant=] is created</td>
-    </tr>    
   </tbody>
 </table>
 
-The [AccessNeedShape](#shexAccessNeed) is used to validate an
-instance of the [AccessNeed](#classAccessNeed) class.
-
-<pre highlight="turtle" id="shexAccessNeed">
-<#AccessNeedShape> {
-  a [ interop:AccessNeed ] ;
-  interop:inAccessNeedGroup @<#:AccessNeedGroupShape> ;
-  interop:registeredShapeTree IRI ;
-  interop:hasShapeTreeDecorator IRI ;
-  interop:hasAccessNeedDecorator IRI? ;
-  interop:hasDataInstance IRI* ;
-  interop:accessMode @<#:AccessModes>+ ;
-  interop:accessNecessity [ interop:AccessRequired interop:AccessOptional ] ;
-  interop:supportedBy IRI* ;  
-  interop:supports IRI? ;       
-  interop:hasReferencedAccessNeed @<#:ReferencedAccessNeedShape>* ;
-  interop:hasDataGrant @<#:DataGrantShape>? ;
-  interop:hasRemoteGrant @<#:RemoteGrantShape>? 
-}
-</pre>
-
-### Referenced Access Need ### {#needs-referenced-access-need}
-
-A <dfn>Referenced Access Need</dfn> is linked directly to an [=Access Need=],
-and represents an access request for data represented by a [=shape tree=] that
-is `st:referenced` by the [=shape tree=] of the linked [=Access Need=].
-
-<figure id="ttl-referenced-access-need">
-  <figcaption>An example [=Referenced Access Need=] linked from the 
-  [prior example](#ttl-access-need) of an [=Access Need=]</figcaption>
-  <pre highlight="turtle">
-  <#need-issue>
-      a interop:ReferencedAccessNeed ;
-      interop:hasAccessNeed <#need-project> ;
-      interop:hasAccessNeedDecorator nn-index:issueDecorator ;
-      interop:registeredShapeTree pm:IssueTree ;        
-      interop:accessNecessity interop:accessRequired ;    
-      interop:accessMode acl:read, acl:write, acl:Control ;
-      interop:hasReferencedDataGrant <#data-grant-issue> ;
-      interop:hasReferencedRemoteDataGrant <#remote-data-grant-issue> .
-  </pre>
+<figure>
+  <figcaption>[=Access Needs=] for Projects and Issues</figcaption>  
+  <pre class=include-code>
+  path: snippets/projectron.example/projectron.example.ttl
+  highlight: turtle
+  show: 25-42
+  </pre> 
 </figure>
 
-<table class="classinfo data" align="left" id="classReferencedAccessNeed">
-  <colgroup></colgroup>
-  <colgroup></colgroup>
-  <colgroup></colgroup>
-  <thead>
-    <tr>
-      <th colspan=3>
-        [ReferencedAccessNeed](interop.ttl#ReferencedAccessNeed)
-      </th>
-    </tr>
-    <tr>
-      <th>Property</th>
-      <th>Range</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>hasAccessNeed</td>
-      <td>[AccessNeed](#classAccessNeed)</td>
-      <td>[=Access Need=] that the [=Referenced Access Need=] is linked to</td>
-    </tr>
-    <tr>
-      <td>hasAccessNeedDecorator</td>
-      <td>[AccessNeedDecorator](#classAccessNeedDecorator)</td>
-      <td>Decorator that explains the reason for the access need in the
-      preferred language of the [=Agent=]</td>
-    </tr>
-    <tr>
-      <td>registeredShapeTree</td>
-      <td>`st:ShapeTree`</td>
-      <td>The [=shape tree=] requested by the [=Referenced Access Need=]</td>
-    </tr>
-    <tr>
-      <td>hasShapeTreeDecorator</td>
-      <td>`st:ShapeTreeDecorator`</td>
-      <td>Decorator associated with the [=shape tree=] that describes the
-      name of the shape-tree and what data it represents in the preferred
-      language of the [=Agent=]</td>
-    </tr>
-    <tr>
-      <td>hasDataInstance</td>
-      <td>-</td>
-      <td>Request specific [=Data Instance=] of the registered
-      [=shape tree=]. Requires advance knowledge of the 
-      [=Data Instance=]</td>
-    </tr>
-    <tr>
-      <td>accessMode</td>
-      <td>`acl:Read, acl:Write, acl:Control, acl:Append`</td>
-      <td>Requested modes of access for the [=Referenced Access Need=]</td>
-    </tr>
-    <tr>
-      <td>accessNecessity</td>
-      <td>`interop:AccessRequired`, `interop:AccessOptional`</td>
-      <td>Necessity of the access to the requesting party</td>
-    </tr>
-    <tr>
-      <td>supportedBy</td>
-      <td>[AccessNeed](#classAccessNeed)</td>
-      <td>An [=Access Need=] whose [=shape tree=] `st:supports` the
-      [=shape tree=] of this [=Referenced Access Need=]</td>
-    </tr>
-    <tr>
-      <td>supports</td>
-      <td>[AccessNeed](#classAccessNeed)</td>
-      <td>An [=Access Need=] that the [=shape tree=] of this
-      [=Referenced Access Need=] `st:supports`</td>
-    </tr>        
-    <tr>
-      <td>hasReferencedDataGrant</td>
-      <td>[ReferencedDataGrant](#)</td>
-      <td>[=Referenced Data Grant=] associated with the 
-      [=Referenced Access Need=], established when the [=Access Grant=] 
-      is created</td>
-    </tr>
-    <tr>
-      <td>hasReferencedRemoteDataGrant</td>
-      <td>[ReferencedRemoteDataGrant](#)</td>
-      <td>[=Referenced Remote Data Grant=] associated with the 
-      [=Referenced Access Need=], established when the [=Access Grant=] 
-      is created</td>
-    </tr>    
-  </tbody>
-</table>
-
-The [ReferencedAccessNeedShape](#shexReferencedAccessNeed) is used to validate an
-instance of the [ReferencedAccessNeed](#classReferencedAccessNeed) class.
-
-<pre highlight="turtle" id="shexReferencedAccessNeed">
-<#ReferencedAccessNeedShape> {
-  a [ interop:ReferencedAccessNeed ] ;  
-  interop:hasAccessNeed @<#:AccessNeedShape> ;
-  interop:registeredShapeTree IRI ;
-  interop:hasShapeTreeDecorator IRI ;
-  interop:hasAccessNeedDecorator IRI? ;
-  interop:hasDataInstance IRI* ;
-  interop:accessMode @<#:AccessModes>+ ;
-  interop:accessNecessity [ interop:AccessRequired interop:AccessOptional ]
-  interop:supportedBy IRI* ;  # ?
-  interop:supports IRI? ;     # ?
-  interop:hasReferencedDataGrant @<#:DataGrantShape>? ;
-  interop:hasReferencedRemoteGrant @<#:RemoteGrantShape>? 
-}
-</pre>
-
-### Trusted Need ### {#needs-trusted}
+## Trusted Need ## {#needs-trusted}
 
 A <dfn>Trusted Need</dfn> represents the request for elevated access
 to various types of top-level resources, including 
-the [=Identity Profile Document=], [=Registry Sets=], or specific 
+the [=Identity Profile Document=], [=Registry Set=], or specific 
 [=Registries=].
 
 Each [=Trusted Need=] has a single `interop:trustedWithType`, which identifies
@@ -431,16 +251,14 @@ indicates the necessity of the [=Access Need=]; *required* or
 [=Trusted Needs=] are described using language-specific
 [=Access Need Decorators=].
 
+[Class Definition](interop.ttl#TrustedNeed) -
+[Shape Definition](interop.shex#TrustedNeedShape)
+
 <table class="classinfo data" align="left" id="classTrustedNeed">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [TrustedNeed](interop.ttl#TrustedNeed)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -455,9 +273,9 @@ indicates the necessity of the [=Access Need=]; *required* or
     </tr>
     <tr>
       <td>trustedWithType</td>
-      <td>  `interop:Agent`, `interop:ApplicationRegistry`
+      <td>  `interop:Agent`, `interop:RegistrySet`, `interop:AgentRegistry`
         `interop:DataRegistry`, `interop:AccessGrantRegistry`,
-        `interop:AccessReceiptRegistry`, `interop:RemoteDataRegistry`
+        `interop:AccessReceiptRegistry`
       </td>
       <td>Resource types that can be requested through a [=Trusted Need=]</td>
     </tr>
@@ -481,46 +299,19 @@ indicates the necessity of the [=Access Need=]; *required* or
   </tbody>
 </table>
 
-The [TrustedNeedShape](#shexTrustedNeed) is used to validate an
-instance of the [TrustedNeed](#classTrustedNeed) class.
-
-<pre highlight="turtle" id="shexTrustedNeed">
-<#TrustedNeedShape> {
-  a [ interop:TrustedNeed ] ;
-  interop:inAccessNeedGroup IRI+ ;
-  interop:hasAccessNeedDecorator IRI? ;
-  interop:trustedWith IRI* ;
-  interop:trustedWithType @<#:TrustedWithNeedTypes> ;
-  interop:accessMode @<#:AccessModes>+ ;
-  interop:accessNecessity [ interop:AccessRequired interop:AccessOptional ] ;
-  interop:hasTrustedGrant @<#:TrustedGrantShape>? 
-}
-
-<#TrustedWithNeedTypes> [
-  interop:Agent 
-  interop:ApplicationRegistry
-  interop:DataRegistry
-  interop:AccessGrantRegistry
-  interop:AccessReceiptRegistry
-  interop:RemoteDataRegistry
-]
-</pre>
-
-### Access Request ### {#needs-access-request}
+## Access Request ## {#needs-access-request}
 
 An <dfn>Access Request</dfn> is used to send [=Access Need Groups=] from
 one [=Agent=] to another.
+
+[Class Definition](interop.ttl#AccessRequest) -
+[Shape Definition](interop.shex#AccessRequestShape)
 
 <table class="classinfo data" align="left" id="classAccessRequest">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessRequest](interop.ttl#AccessRequest)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -529,88 +320,45 @@ one [=Agent=] to another.
   </thead>
   <tbody>
     <tr>
-      <td>fromAgent</td>
-      <td>[Agent](#classAgent)</td>
-      <td>The [=Agent=] who sent the [=Access Request=]</td>
+      <td>fromSocialAgent</td>
+      <td>[SocialAgent](#classSocialAgent)</td>
+      <td>The [=Social Agent=] who sent the [=Access Request=]</td>
     </tr>
     <tr>
-      <td>toAgent</td>
-      <td>[Agent](#classAgent)</td>
-      <td>The [=Agent=] the [=Access Request=] is meant for</td>
+      <td>toSocialAgent</td>
+      <td>[SocialAgent](#classSocialAgent)</td>
+      <td>The [=Social Agent=] the [=Access Request=] is meant for</td>
+    </tr>
+    <tr>
+      <td>hasAccessNeedGroup</td>
+      <td>[AccessNeedGroup](#classAccessNeedGroup)</td>
+      <td>One or more [=Access Need Groups=] detailing the access requested</td>
     </tr>
   </tbody>
-  <tr>
-    <td>hasAccessNeedGroup</td>
-    <td>[AccessNeedGroup](#classAccessNeedGroup)</td>
-    <td>One or more [=Access Need Groups=] detailing the access requested</td>
-  </tr>
-</tbody>
 </table>
 
-The [AccessRequestShape](#shexAccessRequest) is used to
-validate an instance of the
-[AccessRequest](#classAccessRequest) class.
-
-<pre highlight="turtle" id="shexAccessRequest">
-<#AccessRequestShape> {
-  a [interop:AccessRequest] ;
-  interop:fromAgent IRI ;             # Agent who sent the receipt
-  interop:toAgent IRI ;               # Recipient of the receipt
-  interop:hasAccessNeedGroup @<#:AccessNeedGroupShape>+
-}
-</pre>
-
-<figure id="fig-access-request">
-  <figcaption>An [=Access Request=] sent from one agent to another</figcaption>
-  <pre highlight="turtle">
-  PREFIX interop: &lt;http://www.w3.org/ns/solid/interop#&gt;
-  PREFIX note: &lt;http://shapetrees.pub/ns/note#&gt;
-
-  <> a interop:AccessRequest ;
-    interop:fromAgent https://alice.pod.example/profile/id#me ;
-    interop:toAgent https://bob.pod.example/profile/id#me ;
-    interop:hasAccessNeedGroup <#notebook-collaboration-group> .
-
-  <#need-group-photos>
-    a interop:AccessNeedGroup ;    
-    interop:hasAccessDecoratorIndex photoapp-index ;    
-    interop:accessNecessity interop:accessRequired ;
-    interop:accessScenario interop:SharedAccess ;
-    interop:authenticatesAs interop:Agent ;    
-    interop:hasAccessNeed <#need-photo-album> .
-
-  <#need-photo-album>
-      a interop:AccessNeed ;
-      interop:inAccessNeedGroup <#need-group-photos> ;
-      interop:registeredShapeTree photo:PhotoAlbumTree ;        
-      interop:accessNecessity interop:accessRequired ;
-      interop:accessMode acl:read ;    
-      interop:hasReferencedAccessNeed <#need-photo> .
-
-  <#need-photo>
-      a interop:ReferencedAccessNeed ;
-      interop:inAccessNeedGroup <#need-group-photos> ;
-      interop:registeredShapeTree photo:PhotoTree ;        
-      interop:accessNecessity interop:accessRequired ;    
-      interop:accessMode acl:read .
-  </pre>
+<figure>
+  <figcaption>An [=Access Request=] sent from one agent to another</figcaption>  
+  <pre class=include-code>
+  path: snippets/alice.example/66e90b51-abd1-444c-b1df-74370c8c7969.ttl
+  highlight: turtle
+  show: 6-9
+  </pre> 
 </figure>
 
-### Access Decorator Index ### {#needs-access-decorator-index}
+## Access Decorator Index ## {#needs-access-decorator-index}
 
 An <dfn>Access Decorator Index</dfn> is a listing of one or more
 [=Access Decorator Series=].
+
+[Class Definition](interop.ttl#AccessDecoratorIndex) -
+[Shape Definition](interop.shex#AccessDecoratorIndexShape)
 
 <table class="classinfo data" align="left" id="classAccessDecoratorIndex">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessDecoratorIndex](interop.ttl#AccessDecoratorIndex)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -631,64 +379,29 @@ An <dfn>Access Decorator Index</dfn> is a listing of one or more
   </tbody>
 </table>
 
-The [AccessDecoratorIndexShape](#shexAccessDecoratorIndex) is used to
-validate an instance of the [AccessDecoratorIndex](#classAccessDecoratorIndex)
-class.
-
-<pre highlight="turtle" id="shexAccessDecoratorIndex">
-<#AccessDecoratorIndexShape> {
-  a [ interop:AccessDecoratorIndex ] ;
-  interop:defaultLanguage xsd:language ;
-  interop:hasSeries @AccessDecoratorSeries+ ;
-}
-</pre>
-
-<figure id="fig-access-need-decorator-index">
+<figure>
   <figcaption>[=Access Decorator Index=] document linked by the
-  [#notebook-collaboration-group](#ttl-access-need-group)</figcaption>
-  <pre highlight="turtle">
-  PREFIX interop: &lt;http://www.w3.org/ns/solid/interop#&gt;
-  PREFIX xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt;
-
-  <>
-    a interop:AccessDecoratorIndex ;
-    interop:defaultLanguage "en"^^xsd:language ;
-    interop:hasSeries &lt;#series-en&gt; .
-
-  <#series-en>
-      a interop:AccessDecoratorSeries ;
-      interop:usesLanguage "en"^^xsd:language ;
-      interop:hasVersion &lt;#en-v10&gt;, &lt;#en-v11&gt; .
-
-  <#en-v10>
-      a interop:AccessDecoratorVersion ;
-      interop:isVersion "1.0.0" ;
-      interop:hasSHA256 "98198123981273981273918273912738" ;
-      interop:hasAccessDecoratorResource &lt;notebook-decorator-en-1.0&gt; .
-
-  <#en-v11>
-      a interop:AccessDecoratorVersion ;
-      interop:isVersion "1.1.0" ;
-      interop:hasSHA256 "12312312371273712731872371273712" ;
-      interop:hasAccessDecoratorResource &lt;notebook-decorator-en-1.1&gt; .
-  </pre>
+  project management access need group</figcaption>  
+  <pre class=include-code>
+  path: snippets/projectron.example/projectron-decorator-index.ttl
+  highlight: turtle
+  show: 4-7
+  </pre> 
 </figure>
 
-#### Access Decorator Series #### {#needs-access-decorator-series}
+### Access Decorator Series ### {#needs-access-decorator-series}
 
 An <dfn>Access Decorator Series</dfn> has one or
 more [=Access Decorator Versions=] in a given language.
+
+[Class Definition](interop.ttl#AccessDecoratorSeries) -
+[Shape Definition](interop.shex#AccessDecoratorSeriesShape)
 
 <table class="classinfo data" align="left" id="classAccessDecoratorSeries">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessDecoratorSeries](interop.ttl#AccessDecoratorSeries)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -709,33 +422,28 @@ more [=Access Decorator Versions=] in a given language.
   </tbody>
 </table>
 
-The [AccessDecoratorSeriesShape](#shexAccessDecoratorSeries) is used to
-validate an instance of the [AccessDecoratorSeries](#classAccessDecoratorSeries)
-class.
+<figure>
+  <figcaption>[=Access Decorator Series=] containing english decorator versions</figcaption>  
+  <pre class=include-code>
+  path: snippets/projectron.example/projectron-decorator-index.ttl
+  highlight: turtle
+  show: 9-12
+  </pre> 
+</figure>
 
-<pre highlight="turtle" id="shexAccessDecoratorSeries">
-<#AccessDecoratorSeriesShape> {
-  a [ interop:AccessDecoratorSeries ] ;
-  interop:usesLanguage xsd:language ;
-  interop:hasVersion @AccessDecoratorVersion+ ;
-}
-</pre>
-
-#### Access Decorator Version #### {#needs-access-decorator-version}
+### Access Decorator Version ### {#needs-access-decorator-version}
 
 An <dfn>Access Decorator Version</dfn> is a versioned instance of
 a given [=Access Decorator Resource=].
+
+[Class Definition](interop.ttl#AccessDecoratorVersion) -
+[Shape Definition](interop.shex#AccessDecoratorVersionShape)
 
 <table class="classinfo data" align="left" id="classAccessDecoratorVersion">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessDecoratorVersion](interop.ttl#AccessDecoratorVersion)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -761,35 +469,29 @@ a given [=Access Decorator Resource=].
   </tbody>
 </table>
 
-The [AccessDecoratorVersionShape](#shexAccessDecoratorVersion) is used to
-validate an instance of the
-[AccessDecoratorVersion](#classAccessDecoratorVersion) class.
+<figure>
+  <figcaption>[=Access Decorator Versions=] for english</figcaption>  
+  <pre class=include-code>
+  path: snippets/projectron.example/projectron-decorator-index.ttl
+  highlight: turtle
+  show: 14-24
+  </pre> 
+</figure>
 
-<pre highlight="turtle" id="shexAccessDecoratorVersion">
-<#AccessDecoratorVersionShape> {
-  a [ interop:AccessDecoratorVersion ] ;
-  interop:isVersion xsd:string ;
-  interop:hasSHA256 xsd:string ;
-  interop:hasAccessDecoratorResource IRI ;
-}
-</pre>
-
-### Access Decorator Resource ### {#needs-access-decorator-resource}
+## Access Decorator Resource ## {#needs-access-decorator-resource}
 
 An <dfn>Access Decorator Resource</dfn> is a document that contains
 [=Access Need Group Decorators=] and [=Access Need Decorators=] in a
 given language.
+
+[Class Definition](interop.ttl#AccessDecoratorResource) -
+[Shape Definition](interop.shex#AccessDecoratorResourceShape)
 
 <table class="classinfo data" align="left" id="classAccessDecoratorResource">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessDecoratorResource](interop.ttl#AccessDecoratorResource)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -805,22 +507,20 @@ given language.
   </tbody>
 </table>
 
-#### Access Need Group Decorator #### {#needs-access-need-group-decorator}
+### Access Need Group Decorator ### {#needs-access-need-group-decorator}
 
 An <dfn>Access Need Group Decorator</dfn> provides a subject name and
-more in depth description that explains why a given [=Access Need Group=]
-is being requested of an [=Agent=].
+a more in-depth description that explains why a given [=Access Need Group=]
+is being requested of a [=Social Agent=].
+
+[Class Definition](interop.ttl#AccessNeedGroupDecorator) -
+[Shape Definition](interop.shex#AccessNeedGroupDecoratorShape)
 
 <table class="classinfo data" align="left" id="classAccessNeedGroupDecorator">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessNeedGroupDecorator](interop.ttl#AccessNeedGroupDecorator)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -847,34 +547,19 @@ is being requested of an [=Agent=].
   </tbody>
 </table>
 
-The [AccessNeedGroupDecoratorShape](#shexAccessNeedGroupDecorator) is used to
-validate an instance of the
-[AccessNeedGroupDecorator](#classAccessNeedGroupDecorator) class.
-
-<pre highlight="turtle" id="shexAccessNeedGroupDecorator">
-<#AccessNeedGroupDecoratorShape> {
-  a [ interop:AccessNeedGroupDecorator ] ;
-  interop:hasAccessNeedGroup IRI ;
-  skos:prefLabel xsd:string ;
-  skos:definition xsd:string
-}
-</pre>
-
-#### Access Need Decorator #### {#needs-access-need-decorator}
+### Access Need Decorator ### {#needs-access-need-decorator}
 
 An <dfn>Access Need Decorator</dfn> provides a specific
 explanation of why that data type is being requested.
+
+[Class Definition](interop.ttl#AccessNeedDecorator) -
+[Shape Definition](interop.shex#AccessNeedDecoratorShape)
 
 <table class="classinfo data" align="left" id="classAccessNeedDecorator">
   <colgroup></colgroup>
   <colgroup></colgroup>
   <colgroup></colgroup>
   <thead>
-    <tr>
-      <th colspan=3>
-        [AccessNeedDecorator](interop.ttl#AccessNeedDecorator)
-      </th>
-    </tr>
     <tr>
       <th>Property</th>
       <th>Range</th>
@@ -900,194 +585,3 @@ explanation of why that data type is being requested.
     </tr>
   </tbody>
 </table>
-
-The [AccessNeedDecoratorShape](#shexAccessNeedDecorator) is used to
-validate an instance of the
-[AccessNeedDecorator](#classAccessNeedDecorator) class.
-
-<pre highlight="turtle" id="shexAccessNeedDecorator">
-<#AccessNeedDecoratorShape> {
-  a [ interop:AccessNeedDecorator ] ;
-  interop:hasAccessNeedGroup IRI ;
-  interop:registeredShapeTree IRI ;
-  skos:prefLabel xsd:string
-}
-</pre>
-
-## Operations ## {#needs-operations}
-
-### Get Access Decorator Resource ### {#get-access-dec}
-
-<table class="data operation" align="left">
-  <colgroup></colgroup>
-  <colgroup></colgroup>
-  <thead>
-    <tr><th colspan=2>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan=2>
-      This operation returns the appropriate [=Access Decorator Resource=]
-      from an input [=Access Decorator Index=] for the provided language.
-      If the provided language is not available, a default language is used instead.
-      </td>
-    </tr>
-  </tbody>
-  <thead>
-    <tr><th colspan=2>Inputs</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`INDEX`</td>
-      <td>An [=Access Decorator Index=]</td>
-    </tr>
-    <tr>
-      <td>`LANG`</td>
-      <td>The [=Agent's=] preferred language</td>
-    </tr>
-  </tbody>
-  <thead>
-    <tr><th colspan=2>Outputs</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>[=Access Decorator Resource=]</td>
-      <td>Looked up in the [=Access Decorator Index=], based on the
-      [=Agent's=] preferred language</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="opdetails">
-
-1. Let `USESERIES` be `INDEX defaultSeries`
-1. Let `USEVERSION` be an unassigned [=Access Decorator Version=]
-1. For each [=Access Decorator Series=] `SERIES` in `INDEX`
-    1. Let `USESERIES` be `SERIES` if `SERIES usesLanguage` == `LANG`
-1. <em class="rfc2119">MUST</em> return a status code
-    of 404 if no [=Access Decorator Series=] are found.
-1. For each [=Access Decorator Version=] `VERSION` in `USESERIES hasVersion`
-    1. Let `USEVERSION` be `VERSION` if `VERSION` is a more recent
-        [semantic version](https://semver.org/) than `USEVERSION` or if
-        `USEVERSION` is unassigned.
-1. <em class="rfc2119">MUST</em> return a status code
-    of 404 if no [=Access Decorator Versions=] are found.
-1. Let `DECR` be the [=Access Decorator Resource=] linked
-    from `USEVERSION hasAccessDecoratorResource`
-1. <em class="rfc2119">MUST</em> return a status code
-    of 404 if `DECR` is unassigned.
-1. return `DECR`
-
-</div>
-
-### Get Access Need Group Decorator ### {#get-group-dec}
-
-<table class="data operation" align="left">
-  <colgroup></colgroup>
-  <colgroup></colgroup>
-  <thead>
-    <tr><th colspan=2>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan=2>
-      This operation returns the appropriate [=Access Need Group Decorator=]
-      for an input [=Access Need Group=] in the provided language. If the
-      provided language is not available, a default language is used instead.
-      </td>
-    </tr>
-  </tbody>
-  <thead>
-    <tr><th colspan=2>Inputs</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`GROUP`</td>
-      <td>An [=Access Need Group=]</td>
-    </tr>
-    <tr>
-      <td>`LANG`</td>
-      <td>The [=Agent's=] preferred language</td>
-    </tr>
-  </tbody>
-  <thead>
-    <tr><th colspan=2>Outputs</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>[=Access Need Group Decorator=]</td>
-      <td>Associated with `GROUP` in `LANG`</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="opdetails">
-
-1. Let `DECR` be the [=Access Decorator Resource=] returned by [[#get-group-dec]]
-    with inputs: `GROUP hasAccessDecoratorIndex`, `LANG`
-1. Let `USEGDEC` be an unassigned [=Access Need Group Decorator=]
-1. Let `GDECS` be all [=Access Need Group Decorators=] in `DECR`
-1. For each [=Acces Need Group Decorator] `GDEC` in `GDECS`
-  1. Let `USEGDEC` be `GDEC` if `GDEC hasAccessNeedGroup` is `GROUP`
-1. <em class="rfc2119">MUST</em> return a status code
-    of 404 if `USEGDEC` is unassigned
-1. return `USEGDEC`
-
-</div>
-
-### Get Access Need Decorator ### {#get-need-dec}
-
-<table class="data operation" align="left">
-  <colgroup></colgroup>
-  <colgroup></colgroup>
-  <thead>
-    <tr><th colspan=2>Description</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td colspan=2>
-      This operation returns the appropriate [=Access Need Decorator=]
-      for an input [=Access Need=] in the provided language. If the
-      provided language is not available, a default language is used instead.
-      </td>
-    </tr>
-  </tbody>
-  <thead>
-    <tr><th colspan=2>Inputs</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>`NEED`</td>
-      <td>An [=Access Need=]</td>
-    </tr>
-    <tr>
-      <td>`LANG`</td>
-      <td>The [=Agent's=] preferred language</td>
-    </tr>
-  </tbody>
-  <thead>
-    <tr><th colspan=2>Outputs</th></tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>[=Access Need Decorator=]</td>
-      <td>Associated with `NEED` in `LANG`</td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="opdetails">
-
-1. Let `GROUP` be `NEED inAccessNeedGroup`
-1. Let `DECR` be the [=Access Decorator Resource=] returned by [[#get-group-dec]]
-    with inputs: `GROUP hasAccessDecoratorIndex`, `LANG`
-1. Let `USENDEC` be an unassigned [=Access Need Decorator=]
-1. Let `NDECS` be all [=Access Need Decorators=] in `DECR`
-1. For each [=Acces Need Decorator] `NDEC` in `NDECS`
-  1. Let `USENDEC` be `NDEC` if `NDEC hasAccessNeedGroup` is `GROUP` and
-      `NDEC registeredShapeTree` is `NEED registeredShapeTree`
-1. <em class="rfc2119">MUST</em> return a status code
-    of 404 if `USENDEC` is unassigned
-1. return `USENDEC`
-
-</div>

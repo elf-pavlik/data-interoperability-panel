@@ -14,70 +14,46 @@ dcterms:issued "2020-06-14"^^xsd:date ;
 dcterms:modified "2020-09-24"^^xsd:date ;
 rdfs:label "Terms for application interoperability in Solid"@en .
 
-# Agent Class
 #############################################################################
-# Related to a human, software, or device agent
-# participating in the Solid Ecosystem
-#############################################################################
+
 :Agent
   a rdfs:Class ;
   rdfs:comment "An agent profile for the Solid Ecosystem"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Agent"@en .
 
+#############################################################################
+
+:SocialAgent
+  rdfs:subClassOf :Agent ;
+  rdfs:comment "A strongly identifiable individual, group, or organization"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "Social Agent"@en .
+
 :hasInbox
   a rdf:Property ;
-  rdfs:comment "Links an Agent to an inbox"@en ;
+  rdfs:comment "Links a Social Agent to an inbox"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:domain :Agent ;
-  # TODO rdfs:range
+  rdfs:domain :SocialAgent ;
   rdfs:label "Has Inbox"@en .
 
 :hasAccessInbox
   rdfs:subPropertyOf :hasInbox ;
-  rdfs:comment "Links an Agent to an Access inbox for Access Receipts"@en ;
+  rdfs:comment "Links a Social Agent to an Access inbox for Access Receipts"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:domain :Agent ;
-  # TODO rdfs:range
+  rdfs:domain :SocialAgent ;
   rdfs:label "Has Access Inbox"@en .
 
 :hasRegistrySet
   a rdf:Property ;
-  rdfs:comment "Links an agent to their registry set"@en ;
+  rdfs:comment "Links a Social Agent to their registry set"@en ;
   rdfs:isDefinedBy <> ;
+  rdfs:domain :SocialAgent ;
   rdfs:range :RegistrySet ;
-  rdfs:label "Has registry set"@en .
-
-:hasApplicationRegistrySet
-  rdfs:subPropertyOf :hasRegistrySet ;
-  rdfs:comment "Links an agent to their application registry set"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range :ApplicationRegistrySet ;
-  rdfs:label "Has application registry set"@en .
-
-:hasDataRegistrySet
-  rdfs:subPropertyOf :hasRegistrySet ;
-  rdfs:comment "Links an agent to their data registry set"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range :DataRegistrySet ;
-  rdfs:label "Has data registry set"@en .
-
-:hasAccessGrantRegistrySet
-  rdfs:subPropertyOf :hasRegistrySet ;
-  rdfs:comment "Links an agent to their access grant registry set"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range :AccessGrantRegistrySet ;
-  rdfs:label "Has access grant registry set"@en .
-
-:hasAccessReceiptRegistrySet
-  rdfs:subPropertyOf :hasRegistrySet ;
-  rdfs:comment "Links an agent to their access receipt registry set"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range :AccessReceiptRegistrySet ;
-  rdfs:label "Has access receipt registry set"@en .
+  rdfs:label "Has Registry Set"@en .
 
 :hasAuthorizationAgent
-  rdfs:comment "Links an agent to their authorization agent"@en ;
+  rdfs:comment "Links a Social Agent to their Authorization Agent"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:range :Application ;
   rdfs:label "Has authorization agent"@en .
@@ -96,6 +72,34 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:range :Registry ;
   rdfs:label "Has registry"@en .
+
+:hasAgentRegistry
+  rdfs:subPropertyOf :hasRegistry ;
+  rdfs:comment "Links to an Agent Registry in a registry set"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:range :AgentRegistry ;
+  rdfs:label "Has Agent Registry"@en .
+
+:hasAccessGrantRegistry
+  rdfs:subPropertyOf :hasRegistry ;
+  rdfs:comment "Links to an Access Grant Registry in a registry set"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:range :AccessGrantRegistry ;
+  rdfs:label "Has Access Grant Registry"@en .
+
+:hasAccessReceiptRegistry
+  rdfs:subPropertyOf :hasRegistry ;
+  rdfs:comment "Links to an Access Receipt Registry in a registry set"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:range :AccessReceiptRegistry ;
+  rdfs:label "Has Access Receipt Registry"@en .
+
+:hasDataRegistry
+  rdfs:subPropertyOf :hasRegistry ;
+  rdfs:comment "Links to an Data Registry in a registry set"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:range :DataRegistry ;
+  rdfs:label "Has Data registry"@en .
 
 # Registry Class
 #############################################################################
@@ -123,10 +127,10 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 
 :registeredBy
   a rdf:Property ;
-  rdfs:comment "Links to the Agent that created the registration"@en ;
+  rdfs:comment "Links to the Social Agent that created the registration"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:domain :Registration ;
-  rdfs:range :Agent ;
+  rdfs:range :SocialAgent ;
   rdfs:label "Registered By"@en .
 
 :registeredWith
@@ -154,43 +158,43 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:label "Updated At"@en .
 
 #############################################################################
-# Application Registration
+# Agent Registration
 #############################################################################
-:ApplicationRegistrySet
-  rdfs:subClassOf :RegistrySet ;
-  rdfs:comment "A collection of Application Registry instances"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Application Registry"@en .
-
-:ApplicationRegistry
+:AgentRegistry
   rdfs:subClassOf :Registry ;
-  rdfs:comment "A collection of Application Registration instances"@en ;
+  rdfs:comment "A collection of Agent Registrations"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:label "Application Registry"@en .
+  rdfs:label "Agent Registry"@en .
+
+:AgentRegistration
+  rdfs:subClassOf :Registration ;
+  rdfs:comment "An individual member of an Agent Registry"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "Agent Registration"@en .
+
+:SocialAgentRegistration
+  rdfs:subClassOf :AgentRegistration ;
+  rdfs:comment "An registered Social Agent in an Agent Registry"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "Social Agent Registration"@en .
 
 :ApplicationRegistration
-  rdfs:subClassOf :Registration ;
-  rdfs:comment "An individual member of an Application Registry"@en ;
+  rdfs:subClassOf :AgentRegistration ;
+  rdfs:comment "A registered Application in an Agent Registry"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Application Registration"@en .
 
-:registeredApplication
+:registeredAgent
   a rdf:Property ;
   rdfs:comment "Links to the Application registered by an ApplicationRegistration"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:domain :ApplicationRegistration ;
-  rdfs:range :Application ;
-  rdfs:label "Registered Application"@en .
+  rdfs:domain :AgentRegistry ;
+  rdfs:range :Agent ;
+  rdfs:label "Registered Agent"@en .
 
 #############################################################################
 # Data Registration
 #############################################################################
-:DataRegistrySet
-  rdfs:subClassOf :RegistrySet ;
-  rdfs:comment "A collection of Data Registry instances"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Data Registry"@en .
-
 :DataRegistry
   rdfs:subClassOf :Registry ;
   rdfs:comment "A collection of Data Registration instances"@en ;
@@ -226,12 +230,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 #############################################################################
 # Access Grants
 #############################################################################
-:AccessGrantRegistrySet
-  rdfs:subClassOf :RegistrySet ;
-  rdfs:comment "A collection of Access Grant Registry instances"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Access Grant Registry Set"@en .
-
 :AccessGrantRegistry
   rdfs:subClassOf :Registry ;
   rdfs:comment "A collection of Access Grant instances"@en ;
@@ -240,7 +238,7 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 
 :AccessGrant
   rdfs:subClassOf :Registration ;
-  rdfs:comment "Records an access grant made by an Agent to another Agent for data in their control"@en ;
+  rdfs:comment "Records an access grant made by a Social Agent to another Agent for data in their control"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Access Grant"@en .
 
@@ -294,13 +292,13 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:label "Access Grant Subject"@en .
 
-:accessByAgent
+:accessBySocialAgent
   a rdf:Property ;
-  rdfs:comment "Agent associated with Access Grant"@en ;
+  rdfs:comment "Social Agent associated with Access Grant"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:domain :AccessGrant ;
-  rdfs:range :Agent ;
-  rdfs:label "Access Grant Subject Agent"@en .
+  rdfs:range :SocialAgent ;
+  rdfs:label "Access Grant Subject Social Agent"@en .
 
 :accessByApplication
   a rdf:Property ;
@@ -412,7 +410,7 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   a rdf:Property ;
   rdfs:comment "Links to an AccessNeed that the grant satisfies"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:range [ owl:oneOf ( :AccessNeed :ReferencedAccessNeed ) ] ;
+  rdfs:range :AccessNeed ;
   rdfs:label "Satisfies Access Need"@en .
 
 :scopeOfGrant
@@ -421,12 +419,17 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:label "Scope of Grant"@en .
 
-:hasRemoteDataGrant
+:dataOwner
   a rdf:Property ;
-  rdfs:comment "Links to a Remote Data Grant"@en ;
+  rdfs:comment "Identifies the Social Agent that owns a given data set"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:range :RemoteDataGrant ;
-  rdfs:label "Has Remote Data Grant"@en .
+  rdfs:label "Data Owner"@en .
+
+:inheritsFromGrant
+  a rdf:Property ;
+  rdfs:comment "Links to a Data Grant that another Data Grant inherits from"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "Inherits From Grant"@en .
 
 # IRIs for various grant scopes
 #############################################################################
@@ -460,29 +463,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:label "Selected Remote"@en .
 
-# RemoteDataGrant Class
-#############################################################################
-:RemoteDataGrant
-  a rdfs:Class ;
-  rdfs:comment "Access granted to data in a remote data registry for a given shape tree"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Remote Data Grant"@en .
-
-:hasRemoteDataRegistrationGrant
-  a rdf:Property ;
-  rdfs:comment "Links to a Remote Data Registration Grant"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range :RemoteDataRegistrationGrant ;
-  rdfs:label "Has Remote Data Registration Grant"@en .
-
-# RemoteDataRegistrationGrant Class
-#############################################################################
-:RemoteDataRegistrationGrant
-  a rdfs:Class ;
-  rdfs:comment "Access granted to a remote data registration in a remote data registry"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Remote Data Registration Grant"@en .
-
 # TrustedGrant Class
 #############################################################################
 :TrustedGrant
@@ -496,7 +476,7 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:comment "Target of the trusted grant"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:domain :TrustedGrant ;
-  rdfs:range [ owl:oneOf ( :Agent :RegistrySet :Registry ) ] ;
+  rdfs:range [ owl:oneOf ( :SocialAgent :RegistrySet :Registry ) ] ;
   rdfs:label "Trusted With"@en .
 
 :trustedWithType
@@ -504,17 +484,12 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:comment "Type of the target linked via TrustedWith"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:domain :TrustedGrant ;
-  rdfs:range [ owl:oneOf ( :Agent
-                           :ApplicationRegistrySet
-                           :DataRegistrySet
-                           :AccessGrantRegistrySet
-                           :AccessReceiptRegistrySet
-                           :RemoteDataRegistrySet
-                           :ApplicationRegistry
+  rdfs:range [ owl:oneOf ( :SocialAgent
+                           :RegistrySet
+                           :AgentRegistry
                            :DataRegistry
                            :AccessGrantRegistry
-                           :AccessReceiptRegistry
-                           :RemoteDataRegistry ) ] ;
+                           :AccessReceiptRegistry ) ] ;
   rdfs:label "Trusted With Type"@en .
 
 :satisfiesTrustedNeed
@@ -528,12 +503,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 #############################################################################
 # Access Receipts
 #############################################################################
-:AccessReceiptRegistrySet
-  rdfs:subClassOf :RegistrySet ;
-  rdfs:comment "A collection of Access Receipt Registry instances"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Access Receipt Registry Set"@en .
-
 :AccessReceiptRegistry
   rdfs:subClassOf :Registry ;
   rdfs:comment "A collection of Access Receipt instances"@en ;
@@ -542,23 +511,23 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 
 :AccessReceipt
   rdfs:subClassOf :AccessGrant ;
-  rdfs:comment "A record of access granted by another Agent in the ecosystem"@en ;
+  rdfs:comment "A record of access granted by another Social Agent in the ecosystem"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Access Receipt"@en .
 
-:fromAgent
+:fromSocialAgent
   a rdf:Property ;
-  rdfs:comment "Agent sending a message"@en ;
+  rdfs:comment "Social Agent sending a message"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:range :Agent ;
-  rdfs:label "From Agent"@en .
+  rdfs:range :SocialAgent ;
+  rdfs:label "From Social Agent"@en .
 
-:viaAgent
+:viaSocialAgent
   a rdf:Property ;
-  rdfs:comment "Agent providing access on behalf of fromAgent"@en ;
+  rdfs:comment "Social Agent providing access on behalf of fromAgent"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:range :Agent ;
-  rdfs:label "To Agent"@en .
+  rdfs:label "Via Social Agent"@en .
 
 :hasAccessReceipt
   a rdf:Property ;
@@ -585,46 +554,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:comment "Receive access receipt in direct message"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Receipt In Message"@en .
-
-#############################################################################
-# Remote Data Registration
-#############################################################################
-:RemoteDataRegistrySet
-  rdfs:subClassOf :RegistrySet ;
-  rdfs:comment "A collection of Remote Data Registry instances"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Remote Data Registry Set"@en .
-
-:RemoteDataRegistry
-  rdfs:subClassOf :Registry ;
-  rdfs:comment "A collection of Remote Data Registrations and Remote Data Instances"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Remote Data Registry"@en .
-
-:RemoteDataRegistration
-  rdfs:subClassOf :Registration ;
-  rdfs:comment "An individual member of a Remote Data Registry corresponding to a given shape tree"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Remote Data Registration"@en .
-
-:RemoteAgentDataRegistration
-  a rdfs:Class ;
-  rdfs:comment "Representing a data registration shared by another Agent"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Remote Agent Data Registration"@en .
-
-:satisfiesDataGrant
-  a rdf:Property ;
-  rdfs:comment "Links to DataGrant or ReferencedDataGrant the RADR satisfies"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range [ owl:oneOf ( :DataGrant :ReferencedDataGrant ) ] ;
-  rdfs:label "Satisfies Data Grant"@en .
-
-:hasRemoteDataRegistration
-  a rdf:Property ;
-  rdfs:comment "Links to remote data registration of the registered shape tree"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:label "Has Remote Data Registration"@en .
 
 #############################################################################
 # Application
@@ -656,7 +585,7 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:comment "Author of the Application"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:domain :Application ;
-  rdfs:range :Agent ;
+  rdfs:range :SocialAgent ;
   rdfs:label "Application Author"@en .
 
 :applicationAuthorName
@@ -704,13 +633,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:range :TrustedNeed ;
   rdfs:label "Has Trusted Need"@en .
 
-:hasAccessNeedOverride
-  a rdf:Property ;
-  rdfs:comment "Overrides inherited evaluation of an Access Need"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:range :AccessNeed ;
-  rdfs:label "Has Access Need Override"@en .
-
 :hasAccessNeedDecoratorIndex
   a rdf:Property ;
   rdfs:comment "SKOS Index for describing Access Needs"@en ;
@@ -727,7 +649,7 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 
 :isEnabled
   a rdf:Property ;
-  rdfs:comment "Whether the group has been enabled by the Agent"@en ;
+  rdfs:comment "Whether the group has been enabled by the Social Agent"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:domain :AccessNeedGroup ;
   rdfs:range xsd:boolean ;
@@ -736,7 +658,7 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 # IRI that represents a piloted agent
 #############################################################################
 :Pilot
-  rdfs:comment "Authenticates as Agent piloting the Application"@en ;
+  rdfs:comment "Authenticates as Social Agent piloting the Application"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Pilot"@en .
 
@@ -755,14 +677,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:domain :AccessNeed ;
   rdfs:range :AccessNeedGroup ;
   rdfs:label "In Access Need Group"@en .
-
-:recursivelyAuthorize
-  a rdf:Property ;
-  rdfs:comment "Continue traversing shape tree hierarchy for authorization when true"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:domain :AccessNeed ;
-  rdfs:range xsd:boolean ;
-  rdfs:label "Recursively Authorize"@en .
 
 :accessNecessity
   a rdf:Property ;
@@ -783,7 +697,14 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:comment "A requested acl:mode of access for an AccessNeed"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:range [ owl:oneOf ( acl:Read acl:Write acl:Control acl:Append ) ] ;
-  rdfs:label "Requested Access Mode"@en .
+  rdfs:label "Access Mode"@en .
+
+:creatorAccessMode
+  a rdf:Property ;
+  rdfs:comment "An additional requested acl:mode of access for the creator of a resource"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:range [ owl:oneOf ( acl:Read acl:Write acl:Control acl:Append ) ] ;
+  rdfs:label "Creator Access Mode"@en .
 
 :hasAccessNeedGroupDecorator
   a rdf:Property ;
@@ -797,14 +718,14 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   a rdf:Property ;
   rdfs:comment "Links to an AccessNeed this AccessNeed supports"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:range [ owl:oneOf ( :AccessNeed :ReferencedAccessNeed ) ] ;
+  rdfs:range :AccessNeed ;
   rdfs:label "Supports"@en .
 
 :supportedBy
   a rdf:Property ;
   rdfs:comment "Links to an AccessNeed supported by this AccessNeed"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:range [ owl:oneOf ( :AccessNeed :ReferencedAccessNeed ) ] ;
+  rdfs:range :AccessNeed ;
   rdfs:label "Supported By Access Need"@en .
 
 :hasShapeTreeDecorator
@@ -821,6 +742,12 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:domain :AccessNeed ;
   rdfs:range :AccessNeedDecorator ;
   rdfs:label "Has Access Need Decorator"@en .
+
+:inheritsFromNeed
+  a rdf:Property ;
+  rdfs:comment "Links to an Access Need that another Access Need inherits from"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "Inherits From Need"@en .
 
 # TrustedNeed Class
 #############################################################################
@@ -845,12 +772,12 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 # IRIs for accessScenario types
 #############################################################################
 :PersonalAccess
-  rdfs:comment "Access is for personal use of the Agent"@en ;
+  rdfs:comment "Access is for personal use of the Social Agent"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Personal Access"@en .
 
 :SharedAccess
-  rdfs:comment "Access is to be shared with other Agents"@en ;
+  rdfs:comment "Access is to be shared with other Social Agents"@en ;
   rdfs:isDefinedBy <> ;
   rdfs:label "Shared Access"@en .
 

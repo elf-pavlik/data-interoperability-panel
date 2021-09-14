@@ -1,0 +1,15 @@
+PREFIX interop: <http://www.w3.org/ns/solid/interop#>
+PREFIX alice: <https://alice.example/>
+PREFIX alice-auth: <https://auth.alice.example/>
+PREFIX alice-inbox: <https://alice.example/inbox/>
+PREFIX authz-agent: <https://trusted.example/>
+
+alice:\#id
+  a interop:Agent ;
+  ######## Registry Sets ########
+  interop:hasRegistrySet alice:registries ;
+  ######## Authorization Agent ########
+  interop:hasAuthorizationAgent authz-agent: ;
+  ######## Inboxes ########
+  interop:hasInbox alice-inbox:general ;
+  interop:hasAccessInbox alice-inbox:access .

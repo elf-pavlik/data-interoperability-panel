@@ -11,5 +11,5 @@ alice-auth:ecdf7b5e-5123-4a93-87bc-86ef6de389ff
   interop:registeredShapeTree solidtrees:Task ;
   interop:accessMode acl:Read ;
   interop:scopeOfAuthorization interop:Inherited ;
-  interop:inheritsFromConsent
+  interop:inheritsFromAuthorization
     alice-auth:a691ee69-97d8-45c0-bb03-8e887b2db806 .

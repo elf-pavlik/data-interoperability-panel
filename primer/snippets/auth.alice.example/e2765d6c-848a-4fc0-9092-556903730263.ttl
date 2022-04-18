@@ -13,5 +13,5 @@ alice-auth:e2765d6c-848a-4fc0-9092-556903730263
   interop:accessMode acl:Read, acl:Write ;
   interop:scopeOfAuthorization interop:AllFromAgent .
 alice-auth:6a9feb57-252b-43b2-8470-5a938888b2fa
-  interop:inheritsFromConsent
+  interop:inheritsFromAuthorization
     alice-auth:e2765d6c-848a-4fc0-9092-556903730263 .

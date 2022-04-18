@@ -12,7 +12,7 @@ alice-auth:329eb90a-feb9-4c95-a427-2ef23989abe9
   interop:registeredShapeTree solidtrees:Project ;
   interop:accessMode acl:Read, acl:Write ;
   interop:dataOwner <https://omni.example/#corp> ;
-  interop:scopeOfConsent interop:SelectedFromRegistry ;
+  interop:scopeOfAuthorization interop:SelectedFromRegistry ;
   interop:selectedDataGrant
     omni-auth:a7f7d66d-13ba-4ba6-8908-3ea9c2703fce .
 alice-auth:fe442ef3-5200-4b06-b4bc-fc0b495603a9

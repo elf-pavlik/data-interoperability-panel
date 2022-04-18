@@ -11,7 +11,7 @@ alice-auth:a691ee69-97d8-45c0-bb03-8e887b2db806
   interop:registeredShapeTree solidtrees:Project ;
   interop:dataOwner <https://alice.example/#id> ;
   interop:accessMode acl:Read ;
-  interop:scopeOfConsent interop:All .
+  interop:scopeOfAuthorization interop:All .
 alice-auth:ecdf7b5e-5123-4a93-87bc-86ef6de389ff
   interop:inheritsFromConsent
     alice-auth:a691ee69-97d8-45c0-bb03-8e887b2db806 .

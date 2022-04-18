@@ -11,6 +11,6 @@ alice-auth:dbad38a1-4f99-4cd3-9107-23743a4059a8
   interop:grantee <https://someapp.example/#app> ;
   interop:registeredShapeTree solidtrees:Project ;
   interop:accessMode acl:Read, acl:Write ;
-  interop:scopeOfConsent interop:AllFromRegistry ;
+  interop:scopeOfAuthorization interop:AllFromRegistry ;
   interop:dataOwner <https://acme.example/#corp> ;
   interop:hasDataRegistration acme-rnd:6e3b9ac3-254f-41cc-adbe-3f3293fd0475 .

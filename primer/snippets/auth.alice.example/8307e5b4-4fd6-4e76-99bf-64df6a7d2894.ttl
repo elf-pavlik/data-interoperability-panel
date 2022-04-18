@@ -5,7 +5,7 @@ PREFIX alice-auth: <https://auth.alice.example/>
 PREFIX alice-pro: <https://pro.alice.example/>
 
 alice-auth:8307e5b4-4fd6-4e76-99bf-64df6a7d2894
-  a interop:DataConsent ;
+  a interop:DataAuthorization ;
   interop:grantedBy <https://alice.example/#id> ;
   interop:grantedWith <https://jarvis.alice.example/#agent> ;
   interop:grantee <https://someapp.example/#app> ;

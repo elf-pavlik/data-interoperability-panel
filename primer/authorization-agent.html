@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html" rel="canonical">
-  <meta content="f6b422e59a082d1b3e3a5776da7e4b570204573b" name="document-revision">
+  <meta content="bcf43a04c87b4be6d271b8fde7d241221e33693c" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -573,7 +573,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability - Authorization Agent Primer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-04-14">14 April 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-04-18">18 April 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -723,7 +723,7 @@ and their Authorization Agent.</p>
 <pre class="include-code highlight"><c- nn>alice-auth</c-><c- p>:</c-><c- f>13e60d32-77a6-4239-864d-cfe2c90807c8</c->
   <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>RegistrySet</c-><c- p>;</c->
   <c- nn>interop</c-><c- p>:</c-><c- f>hasAgentRegistry</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>1cf3e08b-ffe2-465a-ac5b-94ce165cb8f0</c-> <c- p>;</c->
-  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessConsentRegistry</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>96feb105-063e-4996-ab74-5e504c6ceae5</c-> <c- p>;</c->
+  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationRegistry</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>96feb105-063e-4996-ab74-5e504c6ceae5</c-> <c- p>;</c->
   <c- nn>interop</c-><c- p>:</c-><c- f>hasDataRegistry</c->
     <c- nn>alice-pro</c-><c- p>:</c-><c- f>71e96aaa-f3dc-4263-97d6-a5b4c83524cb</c-> <c- p>,</c->
     <c- nn>alice-home</c-><c- p>:</c-><c- f>2d3d97b4-a26d-434e-afa2-e3bc8e8e2b56</c-> <c- p>.</c->
@@ -767,8 +767,8 @@ Each of those Access Authorizations is created for a specific grantee,
 and groups together one or more Data Authorizations.</p>
    <figure>
 <pre class="include-code highlight"><c- nn>alice-auth</c-><c- p>:</c-><c- f>96feb105-063e-4996-ab74-5e504c6ceae5</c->
-  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AccessConsentRegistry</c-> <c- p>;</c->
-  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessConsent</c->
+  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>AuthorizationRegistry</c-> <c- p>;</c->
+  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessAuthorization</c->
     <c- nn>alice-auth</c-><c- p>:</c-><c- f>eac2c39c-c8b3-4880-8b9f-a3e12f7f6372</c-> <c- p>,</c->
     <c- nn>alice-auth</c-><c- p>:</c-><c- f>75a2ef88-d4d4-4f05-af1e-c2a63af08cab</c-> <c- p>.</c->
 </pre>
@@ -786,7 +786,7 @@ It is always associated with a specific <a href="#shape-tree">§ 2 Shape Tree<
 Data Instances in any number of Data Registrations. In that case, <code>interop:hasDataRegistration</code> will not be specified.</p>
    <figure>
 <pre class="include-code highlight"><c- nn>alice-auth</c-><c- p>:</c-><c- f>e2765d6c-848a-4fc0-9092-556903730263</c->
-  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataConsent</c-> <c- p>;</c->
+  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>DataAuthorization</c-> <c- p>;</c->
   <c- nn>interop</c-><c- p>:</c-><c- f>grantedBy</c-> <c- g>&lt;https://alice.example/#id></c-> <c- p>;</c->
   <c- nn>interop</c-><c- p>:</c-><c- f>grantedWith</c-> <c- g>&lt;https://jarvis.alice.example/#agent></c-> <c- p>;</c->
   <c- nn>interop</c-><c- p>:</c-><c- f>grantee</c-> <c- g>&lt;https://projectron.example/#app></c-> <c- p>;</c->

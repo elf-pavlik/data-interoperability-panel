@@ -104,7 +104,7 @@ as link relation.
 Details in <a href="https://solid.github.io/data-interoperability-panel/specification/#authorization">7. Data Authorization</a>
 ([[SAI]])
 
-## User Consent ## {#user-consent}
+## User Authorization ## {#user-authorization}
 
 In case where application haven't been registered yet it needs to initiate flow with Authorization Agent.
 

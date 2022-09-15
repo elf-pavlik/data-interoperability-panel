@@ -6,9 +6,9 @@
   <meta content="w3c/UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version fb1e763a4, updated Tue Mar 1 13:13:50 2022 -0800" name="generator">
+  <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/applications.html" rel="canonical">
-  <meta content="cb3a11df69fa1da08d92ddfad4f6db149bc88d13" name="document-revision">
+  <meta content="27573ad073478bd9112293cd7962268372ba7dfc" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -573,7 +573,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability - Application Primer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-04-18">18 April 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-09-15">15 September 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -607,7 +607,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
      <ol class="toc">
       <li><a href="#authorization-agent-discovery"><span class="secno">4.1</span> <span class="content">Authorization Agent Discovery</span></a>
       <li><a href="#application-registration-discovery"><span class="secno">4.2</span> <span class="content">Application Registration Discovery</span></a>
-      <li><a href="#user-consent"><span class="secno">4.3</span> <span class="content">User Consent</span></a>
+      <li><a href="#user-authorization"><span class="secno">4.3</span> <span class="content">User Authorization</span></a>
      </ol>
     <li>
      <a href="#application-registration"><span class="secno">5</span> <span class="content">Application Registration</span></a>
@@ -656,8 +656,7 @@ In our examples, we are going to use the following Shapes and Shape Trees.</p>
 
 <c- nn>uuid</c-><c- p>:</c-><c- f>54b5e4f6-c6b5-4c9a-b885-cbf69d08370d</c->
   <c- nn>shapetrees</c-><c- p>:</c-><c- f>hasShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Task</c-> <c- p>;</c->
-  <c- nn>shapetrees</c-><c- p>:</c-><c- f>viaShapePath</c->
-    <c- s>"@&lt;https://solidshapes.example/shapes/Project>~&lt;https://vocab.example/project-management/hasTask>"</c-> <c- p>.</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>viaPredicate</c-> <c- nn>pm</c-><c- p>:</c-><c- f>hasTask</c-> <c- p>.</c->
 </pre>
     <figcaption>Project shape tree</figcaption>
    </figure>
@@ -724,7 +723,7 @@ Application Registration to the application making the request using <code>http:
     <figcaption>HEAD request to and response from Authorization Agent</figcaption>
    </figure>
    <p>Details in <a href="https://solid.github.io/data-interoperability-panel/specification/#authorization">7. Data Authorization</a> (<a data-link-type="biblio" href="#biblio-sai">[SAI]</a>)</p>
-   <h3 class="heading settled" data-level="4.3" id="user-consent"><span class="secno">4.3. </span><span class="content">User Consent</span><a class="self-link" href="#user-consent"></a></h3>
+   <h3 class="heading settled" data-level="4.3" id="user-authorization"><span class="secno">4.3. </span><span class="content">User Authorization</span><a class="self-link" href="#user-authorization"></a></h3>
    <p>In case where application haven’t been registered yet it needs to initiate flow with Authorization Agent.</p>
    <p class="issue" id="issue-ab34eff5"><a class="self-link" href="#issue-ab34eff5"></a> Add details as soon as defined for Authorization Agent</p>
    <p>After successful flow aplication will be able to discover its registration.</p>

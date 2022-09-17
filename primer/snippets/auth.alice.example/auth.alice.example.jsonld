@@ -1,0 +1,4 @@
+{
+  "@context": { "interop": "http://www.w3.org/ns/solid/interop#" },
+  "interop:authorizationRedirectUri": "https://auth.example/authorize"
+}

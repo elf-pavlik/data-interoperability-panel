@@ -1,8 +1,10 @@
 PREFIX interop: <http://www.w3.org/ns/solid/interop#>
 PREFIX alice: <https://alice.example/>
 PREFIX alice-auth: <https://auth.alice.example/>
+PREFIX alice-spamshield: <https://alice.spamshield.example/>
 
 alice:\#id
   a interop:Agent ;
   interop:hasRegistrySet alice-auth:13e60d32-77a6-4239-864d-cfe2c90807c8 ;
+  interop:hasAccessInbox alice-spamshield:access-inbox ;
   interop:hasAuthorizationAgent <https://auth.alice.example/> .

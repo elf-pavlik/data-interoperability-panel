@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version 44af0bf3e, updated Fri Jul 29 17:05:16 2022 -0700" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html" rel="canonical">
-  <meta content="5ed1c66848947633a5dc61f081541356d004472a" name="document-revision">
+  <meta content="f4ab8fff14d48829af7738884553c8849df78aab" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -573,7 +573,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability - Authorization Agent Primer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-09-17">17 September 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-10-07">7 October 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -712,7 +712,7 @@ In our examples, we are going to use the following Shapes and Shape Trees.</p>
    <p>each one of them is described in a dedicated section.</p>
    <p>The Registry Set can be discovered from a social agent’s WebID Profile using <code>interop:hasRegistrySet</code> predicate.</p>
    <figure>
-<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- nn>alice</c-><c- p>:</c-><c- f>\#id</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c-></span><span class="line-no highlight-line" data-line="3"></span><span class="line highlight-line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasRegistrySet</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>13e60d32-77a6-4239-864d-cfe2c90807c8</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationAgent</c-> <c- g>&lt;https://auth.alice.example/></c-> <c- p>.</c-></span></pre>
+<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- k>PREFIX</c-> <c- nn>alice-spamshield:</c-> <c- g>&lt;https://alice.spamshield.example/></c-></span><span class="line-no"></span><span class="line"></span><span class="line-no highlight-line" data-line="3"></span><span class="line highlight-line"><c- nn>alice</c-><c- p>:</c-><c- f>\#id</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasRegistrySet</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>13e60d32-77a6-4239-864d-cfe2c90807c8</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessInbox</c-> <c- nn>alice-spamshield</c-><c- p>:</c-><c- f>access-inbox</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationAgent</c-> <c- g>&lt;https://auth.alice.example/></c-> <c- p>.</c-></span></pre>
     <figcaption>Alice’s WebID document</figcaption>
    </figure>
    <p>While WebID Profile is readable to the public, Registry Set should only be readable by its owner

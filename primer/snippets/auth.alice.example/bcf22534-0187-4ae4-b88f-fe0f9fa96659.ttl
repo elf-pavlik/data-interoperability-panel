@@ -1,5 +1,6 @@
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX interop: <http://www.w3.org/ns/solid/interop#>
+PREFIX oidc: <http://www.w3.org/ns/solid/oidc#>
 PREFIX alice-auth: <https://auth.alice.example/>
 
 alice-auth:bcf22534-0187-4ae4-b88f-fe0f9fa96659
@@ -10,3 +11,9 @@ alice-auth:bcf22534-0187-4ae4-b88f-fe0f9fa96659
     interop:updatedAt "2020-04-04T21:11:33.000Z"^^xsd:dateTime ;
     interop:registeredAgent <https://projectron.example/#app> ;
     interop:hasAccessGrant alice-auth:dd442d1b-bcc7-40e2-bbb9-4abfa7309fbe .
+
+
+<https://projectron.example/#app>
+  interop:hasAccessNeedGroup "https://projectron.example/needs" ;
+  oidc:client_name "Projectron" ;
+  oidc:logo_uri "https://projectron.example/logo.png" .

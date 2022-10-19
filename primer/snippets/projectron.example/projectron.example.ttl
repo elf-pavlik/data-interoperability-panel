@@ -1,15 +1,15 @@
 PREFIX interop: <http://www.w3.org/ns/solid/interop#>
+PREFIX oidc: <http://www.w3.org/ns/solid/oidc#>
 PREFIX acl: <http://www.w3.org/ns/auth/acl#>
 PREFIX solidtrees: <https://solidshapes.example/trees/>
 PREFIX projectron: <https://projectron.example/>
 PREFIX acme: <https://acme.example/>
 
-projectron:\#id
+projectron:\#app
   a interop:Application ;
-  interop:applicationName "Projectron" ;
-  interop:applicationDescription "Manage projects with ease" ;
-  interop:applicationAuthor acme:\#corp ;
-  interop:applicationThumbnail projectron:thumb.svg ;
+  oidc:client_name "Projectron" ;
+  oidc:logo_uri projectron:thumb.svg ;
+  interop:hasAuthorizationRedirectEndpont projectron:oidc ;
   interop:hasAccessNeedGroup projectron:\#need-group-pm .
 projectron:\#need-group-pm
   interop:accessNecessity interop:accessRequired ;

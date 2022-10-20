@@ -1,4 +1,5 @@
 PREFIX uuid: <urn:uuid>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX shapetrees: <http://www.w3.org/ns/shapetrees#>
 PREFIX solidshapes: <https://solidshapes.example/shapes/>
 PREFIX solidtrees: <https://solidshapes.example/trees/>
@@ -13,3 +14,21 @@ solidtrees:Project
 uuid:54b5e4f6-c6b5-4c9a-b885-cbf69d08370d
   shapetrees:hasShapeTree solidtrees:Task ;
   shapetrees:viaPredicate pm:hasTask .
+
+
+solidtrees:desc-en\#Project
+  shapetrees:inDescriptionSet solidtrees:desc-en ;
+  shapetrees:describes solidtrees:Project .
+
+solidtrees:desc-en
+  shapetrees:usesLanguage "en"^^xsd:language .
+
+solidtrees:desc-pl\#Project
+  shapetrees:inDescriptionSet solidtrees:desc-pl ;
+  shapetrees:describes solidtrees:Project .
+
+solidtrees:desc-pl
+  shapetrees:usesLanguage "pl"^^xsd:language .
+
+solidtrees:desc-de
+  shapetrees:usesLanguage "de"^^xsd:language .

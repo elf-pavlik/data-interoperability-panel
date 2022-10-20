@@ -10,21 +10,4 @@ projectron:\#app
   oidc:client_name "Projectron" ;
   oidc:logo_uri projectron:thumb.svg ;
   interop:hasAuthorizationRedirectEndpont projectron:oidc ;
-  interop:hasAccessNeedGroup projectron:\#need-group-pm .
-projectron:\#need-group-pm
-  interop:accessNecessity interop:accessRequired ;
-  interop:accessScenario interop:PersonalAccess ;
-  interop:authenticatesAs interop:Pilot ;
-  interop:hasAccessDecoratorIndex projectron:index ;
-  interop:hasAccessNeed projectron:\#need-project .
-projectron:\#need-project
-  a interop:AccessNeed ;
-  interop:registeredShapeTree solidtrees:Project ;
-  interop:accessNecessity interop:accessRequired ;
-  interop:accessMode acl:read, acl:write .
-projectron:\#need-issue
-  a interop:AccessNeed ;
-  interop:registeredShapeTree solidtrees:Issue ;
-  interop:accessNecessity interop:accessRequired ;
-  interop:accessMode acl:read, acl:write ;
-  interop:inheritsFromNeed projectron:\#need-project .
+  interop:hasAccessNeedGroup projectron:access-needs\#need-group-pm .

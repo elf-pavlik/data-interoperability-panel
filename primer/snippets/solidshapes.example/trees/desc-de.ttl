@@ -1,0 +1,11 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX shapetrees: <http://www.w3.org/ns/shapetrees#>
+PREFIX solidshapes: <https://solidshapes.example/shapes/>
+PREFIX solidtrees: <https://solidshapes.example/trees/>
+
+solidtrees:desc-de
+  a shapetrees:DescriptionSet ;
+  shapetrees:usesLanguage "de"^^xsd:language .
+
+# descriptions missing for testing purposes

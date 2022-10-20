@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html" rel="canonical">
-  <meta content="c8fd16dce86fffa33b66f1b7cff50405053656a7" name="document-revision">
+  <meta content="bb550de1a893d9d2bbed574ce21b9469c3eba4cf" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -573,7 +573,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability - Authorization Agent Primer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-10-19">19 October 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-10-20">20 October 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -661,7 +661,9 @@ for solid authorization agents.</p>
 including which shapes <a data-link-type="biblio" href="#biblio-shex">[SHEX]</a> should be used to validate data.
 In our examples, we are going to use the following Shapes and Shape Trees.</p>
    <figure>
-<pre class="include-code highlight"><c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c->
+<pre class="include-code highlight"><c- k>PREFIX</c-> <c- nn>pm:</c-> <c- g>&lt;https://vocab.example/project-management/></c->
+
+<c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c->
   <c- b>a</c-> <c- nn>shapetrees</c-><c- p>:</c-><c- f>ShapeTree</c-> <c- p>;</c->
   <c- nn>shapetrees</c-><c- p>:</c-><c- f>expectsType</c-> <c- nn>shapetrees</c-><c- p>:</c-><c- f>Resource</c-> <c- p>;</c->
   <c- nn>shapetrees</c-><c- p>:</c-><c- f>shape</c-> <c- nn>solidshapes</c-><c- p>:</c-><c- f>Project</c-> <c- p>;</c->
@@ -670,6 +672,24 @@ In our examples, we are going to use the following Shapes and Shape Trees.</p>
 <c- nn>uuid</c-><c- p>:</c-><c- f>54b5e4f6-c6b5-4c9a-b885-cbf69d08370d</c->
   <c- nn>shapetrees</c-><c- p>:</c-><c- f>hasShapeTree</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Task</c-> <c- p>;</c->
   <c- nn>shapetrees</c-><c- p>:</c-><c- f>viaPredicate</c-> <c- nn>pm</c-><c- p>:</c-><c- f>hasTask</c-> <c- p>.</c->
+
+
+<c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-en\#Project</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>inDescriptionSet</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-en</c-> <c- p>;</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>describes</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c-> <c- p>.</c->
+
+<c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-en</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>usesLanguage</c-> <c- s>"en"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>language</c-> <c- p>.</c->
+
+<c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-pl\#Project</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>inDescriptionSet</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-pl</c-> <c- p>;</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>describes</c-> <c- nn>solidtrees</c-><c- p>:</c-><c- f>Project</c-> <c- p>.</c->
+
+<c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-pl</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>usesLanguage</c-> <c- s>"pl"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>language</c-> <c- p>.</c->
+
+<c- nn>solidtrees</c-><c- p>:</c-><c- f>desc-de</c->
+  <c- nn>shapetrees</c-><c- p>:</c-><c- f>usesLanguage</c-> <c- s>"de"</c-><c- p>^^</c-><c- nn>xsd</c-><c- p>:</c-><c- f>language</c-> <c- p>.</c->
 </pre>
     <figcaption>Project shape tree</figcaption>
    </figure>

@@ -9,5 +9,5 @@ projectron:\#app
   a interop:Application ;
   oidc:client_name "Projectron" ;
   oidc:logo_uri projectron:thumb.svg ;
-  interop:hasAuthorizationRedirectEndpont projectron:oidc ;
+  interop:hasAuthorizationCallbackEndpont projectron: ;
   interop:hasAccessNeedGroup projectron:access-needs\#need-group-pm .

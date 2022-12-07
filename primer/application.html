@@ -6,9 +6,9 @@
   <meta content="w3c/UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version b0de3432c, updated Thu Oct 13 09:16:59 2022 -0700" name="generator">
+  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/applications.html" rel="canonical">
-  <meta content="bb550de1a893d9d2bbed574ce21b9469c3eba4cf" name="document-revision">
+  <meta content="9fd07563be8e4dd0d3e1186dabd5fd720b849447" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -295,6 +295,14 @@ a.self-link:hover {
 .heading > a.self-link {
     font-size: 83%;
 }
+.example > a.self-link,
+.note > a.self-link,
+.issue > a.self-link {
+    /* These blocks are overflow:auto, so positioning outside
+       doesn't work. */
+    left: auto;
+    right: 0;
+}
 li > a.self-link {
     left: calc(-1 * (3.5rem - 26px) - 2em);
 }
@@ -573,7 +581,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability - Application Primer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-10-20">20 October 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-12-07">7 December 2022</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -710,7 +718,7 @@ In our examples, we are going to use the following Shapes and Shape Trees.</p>
    <p>In this primer we will consider the use-case of a project management application
 identified by <code>https://projectron.example/#app</code> Every application has public WebID Document providing information about it.</p>
    <figure>
-<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- nn>projectron</c-><c- p>:</c-><c- f>\#app</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Application</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>client_name</c-> <c- s>"Projectron"</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>logo_uri</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>thumb.svg</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationRedirectEndpont</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>oidc</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessNeedGroup</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>access-needs\#need-group-pm</c-> <c- p>.</c-></span></pre>
+<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- nn>projectron</c-><c- p>:</c-><c- f>\#app</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Application</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>client_name</c-> <c- s>"Projectron"</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>logo_uri</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>thumb.svg</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationCallbackEndpont</c-> <c- nn>projectron</c-><c- p>:</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessNeedGroup</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>access-needs\#need-group-pm</c-> <c- p>.</c-></span></pre>
     <figcaption>Projectron WebID document</figcaption>
    </figure>
    <p>Access Needs explain what kind of data application works with.

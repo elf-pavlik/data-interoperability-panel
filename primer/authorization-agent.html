@@ -8,7 +8,7 @@
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
   <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html" rel="canonical">
-  <meta content="520737621f8fe6484d908a98416b70a3bbd3ad93" name="document-revision">
+  <meta content="35e95b394cd707a73463dfb6d637de1802a131b7" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -740,7 +740,7 @@ In our examples, we are going to use the following Shapes and Shape Trees.</p>
    <p>each one of them is described in a dedicated section.</p>
    <p>The Registry Set can be discovered from a social agent’s WebID Profile using <code>interop:hasRegistrySet</code> predicate.</p>
    <figure>
-<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- k>PREFIX</c-> <c- nn>alice-spamshield:</c-> <c- g>&lt;https://alice.spamshield.example/></c-></span><span class="line-no"></span><span class="line"></span><span class="line-no highlight-line" data-line="3"></span><span class="line highlight-line"><c- nn>alice</c-><c- p>:</c-><c- f>\#id</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasRegistrySet</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>13e60d32-77a6-4239-864d-cfe2c90807c8</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessInbox</c-> <c- nn>alice-spamshield</c-><c- p>:</c-><c- f>access-inbox</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationAgent</c-> <c- g>&lt;https://auth.alice.example/></c-> <c- p>.</c-></span></pre>
+<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- k>PREFIX</c-> <c- nn>alice-auth:</c-> <c- g>&lt;https://auth.alice.example/></c-></span><span class="line-no"></span><span class="line"><c- k>PREFIX</c-> <c- nn>alice-spamshield:</c-> <c- g>&lt;https://alice.spamshield.example/></c-></span><span class="line-no highlight-line" data-line="3"></span><span class="line highlight-line"></span><span class="line-no"></span><span class="line"><c- nn>alice</c-><c- p>:</c-><c- f>\#id</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Agent</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>rdfs</c-><c- p>:</c-><c- f>label</c-> <c- s>"Alice"</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasRegistrySet</c-> <c- nn>alice-auth</c-><c- p>:</c-><c- f>13e60d32-77a6-4239-864d-cfe2c90807c8</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessInbox</c-> <c- nn>alice-spamshield</c-><c- p>:</c-><c- f>access-inbox</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationAgent</c-> <c- g>&lt;https://auth.alice.example/></c-> <c- p>.</c-></span></pre>
     <figcaption>Alice’s WebID document</figcaption>
    </figure>
    <p>While WebID Profile is readable to the public, Registry Set should only be readable by its owner

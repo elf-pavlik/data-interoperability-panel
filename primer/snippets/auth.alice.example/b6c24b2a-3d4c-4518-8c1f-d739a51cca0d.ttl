@@ -10,7 +10,7 @@ alice-auth:b6c24b2a-3d4c-4518-8c1f-d739a51cca0d
     interop:grantedAt "2020-09-05T06:15:01Z"^^xsd:dateTime ;
     interop:updatedAt "2020-09-05T06:15:01Z"^^xsd:dateTime ;
     interop:providedAt "2020-09-05T06:15:01Z"^^xsd:dateTime ;
-    interop:fromAgent <https://acme.example/#corp> ;
+    interop:grantedBy <https://acme.example/#corp> ;
     interop:viaAgent <https://acme.example/#corp> ;
     interop:hasAccessGrantSubject
       acme-auth:7b6915b4-c135-4025-899c-ce53875bffe2\#grant-subject ;

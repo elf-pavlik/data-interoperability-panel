@@ -6,9 +6,9 @@
   <meta content="w3c/UD" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-UD" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
+  <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/primer/applications.html" rel="canonical">
-  <meta content="88c25249b16d62a7223de693e8deed340a4f6b59" name="document-revision">
+  <meta content="520737621f8fe6484d908a98416b70a3bbd3ad93" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -581,7 +581,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://solidproject.org/TR/"> <img alt="Solid" src="https://solidproject.org/TR/solid.svg" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability - Application Primer</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2022-12-07">7 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#UD">Unofficial Proposal Draft</a>, <time class="dt-updated" datetime="2023-01-25">25 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -596,7 +596,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
     </div>
    </details>
    <div data-fill-with="warning"></div>
-   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2022 <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>, <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>, <a href="https://ev.buaa.edu.cn/">Beihang</a>). W3C <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
+   <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2023 <a href="https://www.w3.org/">World Wide Web Consortium</a>. <abbr title="World Wide Web Consortium">W3C</abbr><sup>®</sup> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>, <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document" rel="license">permissive document license</a> rules apply. </p>
    <hr title="Separator for header">
   </div>
   <h2 class="no-num no-toc no-ref heading settled" id="sotd"><span class="content">Status of this document</span></h2>
@@ -643,17 +643,17 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   </nav>
   <main>
    <h2 class="heading settled" data-level="1" id="introduction"><span class="secno">1. </span><span class="content">Introduction</span><a class="self-link" href="#introduction"></a></h2>
-   <p>This primer is intended to accompany <a data-link-type="biblio" href="#biblio-sai">[SAI]</a>.
+   <p>This primer is intended to accompany <a data-link-type="biblio" href="#biblio-sai" title="Solid Application Interoperability">[SAI]</a>.
 It is focused on providing a friendly introduction for developers of libraries intended
 for solid applications.</p>
-   <p>This document was developed alongside the open-source TypeScript implementation <a data-link-type="biblio" href="#biblio-sai-js">[SAI-JS]</a></p>
+   <p>This document was developed alongside the open-source TypeScript implementation <a data-link-type="biblio" href="#biblio-sai-js" title="Solid Application Interoperability - TypeScript implementation">[SAI-JS]</a></p>
    <p>We will follow example of an application called <em>Projectron</em>,
 which manages projects and tasks.
 End user, named <em>Alice</em>, collaborates on projects
 with other Individuals and Organizations.</p>
    <h2 class="heading settled" data-level="2" id="shape-tree"><span class="secno">2. </span><span class="content">Shape Tree</span><a class="self-link" href="#shape-tree"></a></h2>
-   <p>Shape Trees <a data-link-type="biblio" href="#biblio-shapetrees">[SHAPETREES]</a> allow  for the definition and validation of data hierarchies
-including which shapes <a data-link-type="biblio" href="#biblio-shex">[SHEX]</a> should be used to validate data.
+   <p>Shape Trees <a data-link-type="biblio" href="#biblio-shapetrees" title="Shape Trees">[SHAPETREES]</a> allow  for the definition and validation of data hierarchies
+including which shapes <a data-link-type="biblio" href="#biblio-shex" title="Shape Expressions Language 2.1">[SHEX]</a> should be used to validate data.
 In our examples, we are going to use the following Shapes and Shape Trees.</p>
    <figure>
 <pre class="include-code highlight"><c- k>PREFIX</c-> <c- nn>pm:</c-> <c- g>&lt;https://vocab.example/project-management/></c->
@@ -718,7 +718,7 @@ In our examples, we are going to use the following Shapes and Shape Trees.</p>
    <p>In this primer we will consider the use-case of a project management application
 identified by <code>https://projectron.example/#app</code> Every application has public WebID Document providing information about it.</p>
    <figure>
-<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- nn>projectron</c-><c- p>:</c-><c- f>\#app</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Application</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>client_name</c-> <c- s>"Projectron"</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>logo_uri</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>thumb.svg</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationCallbackEndpoint</c-> <c- nn>projectron</c-><c- p>:</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessNeedGroup</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>access-needs\#need-group-pm</c-> <c- p>.</c-></span></pre>
+<pre class="include-code highlight line-numbered"><span class="line-no"></span><span class="line"><c- nn>projectron</c-><c- p>:</c-><c- f>\#app</c-></span><span class="line-no"></span><span class="line">  <c- b>a</c-> <c- nn>interop</c-><c- p>:</c-><c- f>Application</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>client_name</c-> <c- s>"Projectron"</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>oidc</c-><c- p>:</c-><c- f>logo_uri</c-> <c- s>"https://robohash.org/https://projectron.example/?set=set3"</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAuthorizationCallbackEndpoint</c-> <c- nn>projectron</c-><c- p>:</c-> <c- p>;</c-></span><span class="line-no"></span><span class="line">  <c- nn>interop</c-><c- p>:</c-><c- f>hasAccessNeedGroup</c-> <c- nn>projectron</c-><c- p>:</c-><c- f>access-needs\#need-group-pm</c-> <c- p>.</c-></span></pre>
     <figcaption>Projectron WebID document</figcaption>
    </figure>
    <p>Access Needs explain what kind of data application works with.
@@ -750,7 +750,7 @@ Application Registration to the application making the request using <code>http:
 <pre class="highlight line-numbered"><span class="line-no"></span><span class="line"><c- kr>HTTP</c-><c- o>/</c-><c- m>1.1</c-> <c- m>200</c-> <c- ne>OK</c-></span><span class="line-no"></span><span class="line"><c- e>Link</c-><c- o>:</c-> <c- l>&lt;https://projectron.example/#app>;</c-></span><span class="line-no highlight-line" data-line="3"></span><span class="line highlight-line">  <c- l>anchor="https://auth.alice.example/bcf22534-0187-4ae4-b88f-fe0f9fa96659";</c-></span><span class="line-no"></span><span class="line">  <c- l>rel="http://www.w3.org/ns/solid/interop#registeredAgent"</c-></span></pre>
     <figcaption>HEAD request to and response from Authorization Agent</figcaption>
    </figure>
-   <p>Details in <a href="https://solid.github.io/data-interoperability-panel/specification/#authorization">7. Data Authorization</a> (<a data-link-type="biblio" href="#biblio-sai">[SAI]</a>)</p>
+   <p>Details in <a href="https://solid.github.io/data-interoperability-panel/specification/#authorization">7. Data Authorization</a> (<a data-link-type="biblio" href="#biblio-sai" title="Solid Application Interoperability">[SAI]</a>)</p>
    <h3 class="heading settled" data-level="4.3" id="user-authorization"><span class="secno">4.3. </span><span class="content">User Authorization</span><a class="self-link" href="#user-authorization"></a></h3>
    <p>In case where application haven’t been registered yet it needs to initiate flow with Authorization Agent.</p>
    <p class="issue" id="issue-ab34eff5"><a class="self-link" href="#issue-ab34eff5"></a> Add details as soon as defined for Authorization Agent</p>

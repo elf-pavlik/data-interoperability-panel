@@ -8,6 +8,6 @@ PREFIX acme: <https://acme.example/>
 projectron:\#app
   a interop:Application ;
   oidc:client_name "Projectron" ;
-  oidc:logo_uri projectron:thumb.svg ;
+  oidc:logo_uri "https://robohash.org/https://projectron.example/?set=set3" ;
   interop:hasAuthorizationCallbackEndpoint projectron: ;
   interop:hasAccessNeedGroup projectron:access-needs\#need-group-pm .

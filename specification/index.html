@@ -6,9 +6,9 @@
   <meta content="w3c/ED" name="w3c-status">
   <link href="https://www.w3.org/StyleSheets/TR/2021/W3C-ED" rel="stylesheet">
   <link href="https://www.w3.org/2008/site/images/favicon.ico" rel="icon">
-  <meta content="Bikeshed version 63e66730b, updated Tue Oct 25 12:35:05 2022 -0700" name="generator">
+  <meta content="Bikeshed version d6f2d6445, updated Tue Jan 17 11:25:25 2023 -0800" name="generator">
   <link href="https://solid.github.io/data-interoperability-panel/specification/" rel="canonical">
-  <meta content="88c25249b16d62a7223de693e8deed340a4f6b59" name="document-revision">
+  <meta content="520737621f8fe6484d908a98416b70a3bbd3ad93" name="document-revision">
 <style>
 table.permissions thead tr {
   font-size: 12px;
@@ -562,7 +562,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"><a class="logo" href="https://www.w3.org/"> <img alt="W3C" height="48" src="https://www.w3.org/StyleSheets/TR/2021/logos/W3C" width="72"> </a> </p>
    <h1 class="p-name no-ref" id="title">Solid Application Interoperability</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2022-12-07">7 December 2022</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types#ED">Editor’s Draft</a>, <time class="dt-updated" datetime="2023-01-25">25 January 2023</time></p>
    <details open>
     <summary>More details about this document</summary>
     <div data-fill-with="spec-metadata">
@@ -672,7 +672,7 @@ to its full potential. The fundamentals of Solid make this possible,
 but further definition of standard methods and mechanisms 
 must be established
 to make it practical, intuitive, and secure.</p>
-   <p class="note" role="note"><span>Note:</span> See <a data-link-type="biblio" href="#biblio-problems-and-goals">Problems and Goals for Interoperability in Solid</a> for an explanation of the problem space.</p>
+   <p class="note" role="note"><span class="marker">Note:</span> See <a data-link-type="biblio" href="#biblio-problems-and-goals" title="Problems and Goals for Interoperability, Collaboration, and Security in a Solid Pod">Problems and Goals for Interoperability in Solid</a> for an explanation of the problem space.</p>
    <p>This specification details how <a data-link-type="dfn" href="#social-agent" id="ref-for-social-agent">Social Agents</a> in the Solid ecosystem
 can read, write, and manage data stored in a Solid pod using
 disparate <a data-link-type="dfn" href="#application" id="ref-for-application">Applications</a>.</p>
@@ -1508,7 +1508,7 @@ one flow to another.</p>
        <td>Projectron receives a <code>401 Not Authorized</code>, because Alice / Projectron needs to authenticate first
       <tr>
        <td><b>6</b>
-       <td>Projectron initiates a <a data-link-type="biblio" href="#biblio-solid-oidc">[SOLID-OIDC]</a> flow with Alice’s Identity Provider and receives a DPOP-bound Access Token and Proof
+       <td>Projectron initiates a <a data-link-type="biblio" href="#biblio-solid-oidc" title="Solid-OIDC Specification">[SOLID-OIDC]</a> flow with Alice’s Identity Provider and receives a DPOP-bound Access Token and Proof
       <tr>
        <td><b>7</b>
        <td>Now authenticated, Projectron <a href="#agent-registration-discovery">asks</a> Alice’s <a data-link-type="dfn" href="#authorization-agent①" id="ref-for-authorization-agent①④">Authorization Agent</a> again for a Projectron <a data-link-type="dfn" href="#application-registration①" id="ref-for-application-registration①⑨">Application Registration</a>
@@ -2294,7 +2294,7 @@ of that type is specified by the <dfn class="dfn-paneled" data-dfn-type="dfn" da
    <p class="issue" id="issue-a2fe1e29"><a class="self-link" href="#issue-a2fe1e29"></a> This specification uses some access modes in the <code>acl:</code> namespace that
 have not been adopted to demonstrate the most secure and accurate
 expression of a <a data-link-type="dfn" href="#social-agent" id="ref-for-social-agent⑨⑤">Social Agent’s</a> authorization. <a href="https://github.com/solid/authorization-panel/issues/253">Discussions are underway</a> to add these modes.</p>
-   <p class="issue" id="issue-5157d1cb"><a class="self-link" href="#issue-5157d1cb"></a> <a data-link-type="biblio" href="#biblio-wac">[WAC]</a> does not have any mechanism to extend or modify
+   <p class="issue" id="issue-5157d1cb"><a class="self-link" href="#issue-5157d1cb"></a> <a data-link-type="biblio" href="#biblio-wac" title="Web Access Control">[WAC]</a> does not have any mechanism to extend or modify
 inherited permissions.</p>
    <table align="left" class="data tree">
     <colgroup>
@@ -2342,7 +2342,7 @@ owner, across all of the data owner’s registries.</p>
 data of type <code>pm-shapetrees:ProjectTree</code> with a scope of <code>interop:All</code>. Since 
 Alice has two <a data-link-type="dfn" href="#data-registry①" id="ref-for-data-registry①①②">Data Registries</a> and Bob has shared projects with her, several <a data-link-type="dfn" href="#data-grant①" id="ref-for-data-grant①②③">Data Grants</a> will be generated from this <a data-link-type="dfn" href="#data-authorization①" id="ref-for-data-authorization①①③">Data Authorization</a> and shared 
 with Projectron.</p>
-   <p class="note" role="note"><span>Note:</span> <code>interop:All</code> is only valid for a <a data-link-type="dfn" href="#data-authorization①" id="ref-for-data-authorization①①④">Data Authorization</a>.
+   <p class="note" role="note"><span class="marker">Note:</span> <code>interop:All</code> is only valid for a <a data-link-type="dfn" href="#data-authorization①" id="ref-for-data-authorization①①④">Data Authorization</a>.
 Generated <a data-link-type="dfn" href="#data-grant①" id="ref-for-data-grant①②④">Data Grants</a> use the more specific <code>interop:AllFromRegistry</code> for each unique <a data-link-type="dfn" href="#data-registry①" id="ref-for-data-registry①①③">Data Registry</a>, including Bob’s.</p>
    <figure>
     <figcaption>Alice’s <a data-link-type="dfn" href="#data-authorization①" id="ref-for-data-authorization①①⑤">Data Authorization</a> for Projectron to access Projects
@@ -2374,7 +2374,7 @@ any access that she has been given to another <a data-link-type="dfn" href="#soc
    <p><b>Shapes:</b> <a href="interop.shex#DataAuthorizationAllFromAgentShape">DataAuthorizationAllFromAgentShape</a></p>
    <p>The following example illustrates <em>Alice’s</em> authorization to give Performchart access to
 data of type <code>pm-shapetrees:ProjectTree</code> with a scope of <code>interop:AllFromAgent</code> and an <code>interop:dataOwner</code> of <em>Bob</em>.</p>
-   <p class="note" role="note"><span>Note:</span> While Bob has granted Alice the ability to manipulate his project data,
+   <p class="note" role="note"><span class="marker">Note:</span> While Bob has granted Alice the ability to manipulate his project data,
 Alice grants Performchart a narrower scope of read-only access.</p>
    <figure>
     <figcaption>Alice’s <a data-link-type="dfn" href="#data-authorization①" id="ref-for-data-authorization①①⑥">Data Authorization</a> for Performchart to access Projects
@@ -2853,7 +2853,7 @@ also act as autonomous <a data-link-type="dfn" href="#authenticated-agent" id="r
 as the <a data-link-type="dfn" href="#authenticated-agent" id="ref-for-authenticated-agent①">authenticated agent</a>. They include in-browser javascript
 applications, native desktop applications, and mobile applications.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="authenticated-agent">authenticated agent</dfn> is an <a data-link-type="dfn" href="#agents①" id="ref-for-agents①③③">agent</a> that has strongly
-authenticated their <a data-link-type="dfn" href="#identity" id="ref-for-identity⑨">identity</a> by proving control of the <a data-link-type="dfn" href="#identity-profile-document" id="ref-for-identity-profile-document①⓪">identity profile document</a> via an authentication protocol such as <a data-link-type="biblio" href="#biblio-solid-oidc">[SOLID-OIDC]</a>.</p>
+authenticated their <a data-link-type="dfn" href="#identity" id="ref-for-identity⑨">identity</a> by proving control of the <a data-link-type="dfn" href="#identity-profile-document" id="ref-for-identity-profile-document①⓪">identity profile document</a> via an authentication protocol such as <a data-link-type="biblio" href="#biblio-solid-oidc" title="Solid-OIDC Specification">[SOLID-OIDC]</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="identity">identity</dfn> is a unique URI that can be dereferenced
 to return an <a data-link-type="dfn" href="#identity-profile-document" id="ref-for-identity-profile-document①①">identity profile document</a>. Compatible
 identity systems include <a data-link-type="dfn" href="#webid" id="ref-for-webid②">WebID</a> and <a data-link-type="dfn" href="#did" id="ref-for-did">DID</a>.</p>
@@ -2861,16 +2861,16 @@ identity systems include <a data-link-type="dfn" href="#webid" id="ref-for-webid
 dereferencing the URI for a given <a data-link-type="dfn" href="#identity" id="ref-for-identity①⓪">identity</a>. It provides information that
 can be used to prove that a given <a data-link-type="dfn" href="#agents①" id="ref-for-agents①③④">Agent</a> controls the document.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="webid">WebID</dfn> is a web resource at an HTTP URI which refers to an <a data-link-type="dfn" href="#agents①" id="ref-for-agents①③⑤">agent</a>. An <a data-link-type="dfn" href="#identity-profile-document" id="ref-for-identity-profile-document①②">identity profile document</a> can be accessed by
-dereferencing the WebID. <a data-link-type="biblio" href="#biblio-webid">[WEBID]</a></p>
+dereferencing the WebID. <a data-link-type="biblio" href="#biblio-webid" title="WebID 1.0">[WEBID]</a></p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="did">DID</dfn> is a URI that associates a DID subject (e.g. an <a data-link-type="dfn" href="#agents①" id="ref-for-agents①③⑥">agent</a>,
 thing, data model, abstract entity, etc.) with a DID document,
 equivalent to an <a data-link-type="dfn" href="#identity-profile-document" id="ref-for-identity-profile-document①③">identity profile document</a>, to allow trustable
-interactions with that subject. <a data-link-type="biblio" href="#biblio-did">[DID]</a></p>
+interactions with that subject. <a data-link-type="biblio" href="#biblio-did" title="Decentralized Identifiers (DIDs) v1.0">[DID]</a></p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application-identity">application identity</dfn> is a web resource at an HTTP URI
 that uniquely identifies a given <a data-link-type="dfn" href="#application" id="ref-for-application⑤⑦">Application</a>, and dereferences to an <a data-link-type="dfn" href="#application-profile-document" id="ref-for-application-profile-document">application profile document</a>.</p>
    <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="application-profile-document">application profile document</dfn> is a linked data document
 obtained by dereferencing the URI for a given <a data-link-type="dfn" href="#application-identity" id="ref-for-application-identity">application identity</a>.</p>
-   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="acl-resource">acl resource</dfn> as defined by <a data-link-type="biblio" href="#biblio-wac">[WAC]</a> may be directly
+   <p>An <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="acl-resource">acl resource</dfn> as defined by <a data-link-type="biblio" href="#biblio-wac" title="Web Access Control">[WAC]</a> may be directly
 associated with a resource or indirectly associated with a resource
 through inheritance. It determines which <a data-link-type="dfn" href="#authorization-subject" id="ref-for-authorization-subject">authorization subjects</a> can
 access a resource, and the modes of access they have for it.</p>
@@ -2883,13 +2883,13 @@ a specific <a data-link-type="dfn" href="#agents①" id="ref-for-agents①③⑨
    <p>An <dfn data-dfn-type="dfn" data-noexport id="authorization-statement">authorization statement<a class="self-link" href="#authorization-statement"></a></dfn> is ...</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shape">shape</dfn> provides a schema that RDF data graphs must meet in order
 to be considered conformant. A shape associated with a given resource in a <a data-link-type="dfn" href="#pod" id="ref-for-pod①">pod</a> ensures that any data stored in that resource must conform to the
-associated shape. Shape languages include <a data-link-type="biblio" href="#biblio-shex">[SHEX]</a> and <a data-link-type="biblio" href="#biblio-shacl">[SHACL]</a>.</p>
+associated shape. Shape languages include <a data-link-type="biblio" href="#biblio-shex" title="Shape Expressions Language 2.1">[SHEX]</a> and <a data-link-type="biblio" href="#biblio-shacl" title="Shapes Constraint Language (SHACL)">[SHACL]</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shape-tree">Shape Tree</dfn> defines a prospective tree of related resources
 which can be read and written by applications. The shape tree associates
 each of these resources with a shape. This allows one to treat a set of
 related resources as a single grouping, and apply that to a range of
 operations including access control, data organization, data validation,
-and data migration. <a data-link-type="biblio" href="#biblio-shapetrees">[SHAPETREES]</a></p>
+and data migration. <a data-link-type="biblio" href="#biblio-shapetrees" title="Shape Trees">[SHAPETREES]</a></p>
    <p>A <dfn data-dfn-type="dfn" data-noexport id="shape-tree-decorator">Shape Tree Decorator<a class="self-link" href="#shape-tree-decorator"></a></dfn> provides additional human-readable
 description and context for a given <a data-link-type="dfn" href="#shape-tree" id="ref-for-shape-tree②⑥">shape tree</a>.</p>
    <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="shape-tree-reference">Shape Tree Reference</dfn> provides the necessary context to
@@ -2977,7 +2977,7 @@ associate instances of related shape trees via a ShapePath</p>
    <div class="issue"> This specification uses some access modes in the <code>acl:</code> namespace that
 have not been adopted to demonstrate the most secure and accurate
 expression of a <a data-link-type="dfn" href="#social-agent">Social Agent’s</a> authorization. <a href="https://github.com/solid/authorization-panel/issues/253">Discussions are underway</a> to add these modes. <a class="issue-return" href="#issue-a2fe1e29" title="Jump to section">↵</a></div>
-   <div class="issue"> <a data-link-type="biblio" href="#biblio-wac">[WAC]</a> does not have any mechanism to extend or modify
+   <div class="issue"> <a data-link-type="biblio" href="#biblio-wac" title="Web Access Control">[WAC]</a> does not have any mechanism to extend or modify
 inherited permissions. <a class="issue-return" href="#issue-5157d1cb" title="Jump to section">↵</a></div>
   </div>
   <aside class="dfn-panel" data-for="agents①">

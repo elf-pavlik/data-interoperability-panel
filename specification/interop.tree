@@ -16,12 +16,6 @@ PREFIX interops: <http://www.w3.org/ns/solid/interop-schema#>
   st:expectsType    st:Resource ;
   st:shape          interops:RegistrySetShape .
 
-<#AccessInboxTree>
-  a st:ShapeTree ;
-  st:expectsType    st:Container ;
-  st:contains       <#AccessReceiptTree> ,
-                    <#AccessRequestTree> .
-
 <#AccessReceiptTree>
   a st:ShapeTree ;
   st:expectsType    st:Resource ;
@@ -48,7 +42,8 @@ PREFIX interops: <http://www.w3.org/ns/solid/interop-schema#>
   st:expectsType    st:Container ;
   st:shape          interops:AgentRegistryShape ;
   st:contains       <#ApplicationRegistrationTree> ,
-                    <#SocialAgentRegistrationTree> .
+                    <#SocialAgentRegistrationTree> ,
+                    <#SocialAgentInvitationTree> .
 
 <#ApplicationRegistrationTree>
   a st:ShapeTree ;
@@ -63,6 +58,10 @@ PREFIX interops: <http://www.w3.org/ns/solid/interop-schema#>
   st:shape          interops:SocialAgentRegistrationShape ;
   st:contains       <#AccessGrantTree> ,
                     <#DataGrantTree> .
+<#SocialAgentInvitationTree>
+  a st:ShapeTree ;
+  st:expectsType    st:Container ;
+  st:shape          interops:SocialAgentInvitationShape .
 
 <#AccessGrantTree>
   a st:ShapeTree ;

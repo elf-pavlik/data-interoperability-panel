@@ -9,7 +9,7 @@ acme-auth:7b6915b4-c135-4025-899c-ce53875bffe2
     interop:grantedAt "2020-09-05T06:15:01Z"^^xsd:dateTime ;
     interop:updatedAt "2020-09-05T06:15:01Z"^^xsd:dateTime ;
     interop:providedAt "2020-09-05T06:15:01Z"^^xsd:dateTime ;
-    interop:grantedBy <https://acme.example/#corp> ;
+    interop:fromAgent <https://acme.example/#corp> ;
     interop:viaAgent <https://acme.example/#corp> ;
     interop:hasAccessGrantSubject
       acme-auth:7b6915b4-c135-4025-899c-ce53875bffe2\#grant-subject ;

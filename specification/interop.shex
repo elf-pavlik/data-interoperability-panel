@@ -9,8 +9,6 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   a [ interop:SocialAgent ] ;
   interop:hasRegistrySet                    IRI // shex:reference <#RegistrySetShape> ;
   interop:hasAuthorizationAgent             IRI // shex:reference <#ApplicationShape> ;
-  interop:hasInbox                          IRI ;
-  interop:hasAccessInbox                    IRI
 }
 
 <#RegistrySetShape> {
@@ -40,7 +38,17 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   &<#CommonRegistrationProperties> ;
   interop:registeredAgent                   IRI  // shex:reference <#AgentShape> ;
   interop:hasAccessGrant                    IRI  // shex:reference <#AccessGrantShape> ;
-  interop:reciprocalRegistration            IRI? // shex:reference <#SocialAgentShape>
+  interop:reciprocalRegistration            IRI? // shex:reference <#SocialAgentShape> ;
+  skos:prefLabel                            xsd:string ;
+  skos:note                                 xsd:string?
+}
+
+<#SocialAgentInvitationShape> {
+  a [ interop:SocialAgentInvitation ] ;
+  &<#CommonRegistrationProperties
+  interop:capabilityUrl                     IRI ;
+  skos:prefLabel                            xsd:string ;
+  skos:note                                 xsd:string?
 }
 
 <#ApplicationRegistrationShape> {
@@ -67,7 +75,8 @@ PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
   interop:applicationDescription            xsd:string ;
   interop:applicationAuthor                 IRI  // shex:reference <#AgentShape> ;
   interop:applicationThumbnail              IRI? ;
-  interop:hasAccessNeedGroup                IRI* // shex:reference <#AccessNeedGroupShape>
+  interop:hasAccessNeedGroup                IRI* // shex:reference <#AccessNeedGroupShape> ;
+  interop:hasAuthorizationCallbackEndpoint  IRI? ;
 }
 
 <#AccessNeedGroupShape> {

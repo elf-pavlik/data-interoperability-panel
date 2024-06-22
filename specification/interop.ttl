@@ -28,20 +28,6 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:label "Social Agent"@en .
 
-:hasInbox
-  a rdf:Property ;
-  rdfs:comment "Links a Social Agent to an inbox"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:domain :SocialAgent ;
-  rdfs:label "Has Inbox"@en .
-
-:hasAccessInbox
-  rdfs:subPropertyOf :hasInbox ;
-  rdfs:comment "Links a Social Agent to an Access inbox for Access Receipts"@en ;
-  rdfs:isDefinedBy <> ;
-  rdfs:domain :SocialAgent ;
-  rdfs:label "Has Access Inbox"@en .
-
 :hasRegistrySet
   a rdf:Property ;
   rdfs:comment "Links a Social Agent to their registry set"@en ;
@@ -56,6 +42,24 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:domain :SocialAgent ;
   rdfs:range :Application ;
   rdfs:label "Has authorization agent"@en .
+
+#############################################################################
+# Authorization Agent
+#############################################################################
+:AuthorizationAgent
+  a rdfs:Class ;
+  rdfs:subClassOf :Agent ;
+  rdfs:comment "Service used by end user to manage access"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "AuthorizationAgent"@en .
+
+:hasAuthorizationRedirectEndpoint
+  a rdf:Property ;
+  rdfs:comment "URI expected to be used for redirect to obtain authorization"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:domain :AuthorizationAgent ;
+  rdfs:label "Has Authorization Redirect Endpoint"@en .
+
 
 # RegistrySet Class
 #############################################################################
@@ -178,6 +182,12 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:label "Social Agent Registration"@en .
 
+:SocialAgentInvitation
+  rdfs:subClassOf :AgentRegistration ;
+  rdfs:comment "An invited Social Agent in an Agent Registry"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:label "Social Agent Invitation"@en .
+
 :ApplicationRegistration
   rdfs:subClassOf :AgentRegistration ;
   rdfs:comment "A registered Application in an Agent Registry"@en ;
@@ -262,10 +272,10 @@ rdfs:label "Terms for application interoperability in Solid"@en .
 
 :replaces
   a rdf:Property ;
-  rdfs:comment "Links to a previous Access Authorization that has been superseded"@en ;
+  rdfs:comment "Links to a previous immutable resource that has been superseded"@en ;
   rdfs:isDefinedBy <> ;
-  rdfs:domain :AccessAuthorization ;
-  rdfs:range :AccessAuthorization ;
+  rdfs:domain [ owl:unionOf ( :AccessAuthorization :AccessNeedGroup ) ] ;
+  rdfs:range [ owl:unionOf ( :AccessAuthorization :AccessNeedGroup) ] ;
   rdfs:label "Replaces"@en .
 
 :DataAuthorization
@@ -514,6 +524,13 @@ rdfs:label "Terms for application interoperability in Solid"@en .
   rdfs:isDefinedBy <> ;
   rdfs:range :AccessNeedGroup ;
   rdfs:label "Has Access Need Group"@en .
+
+:hasAuthorizationCallbackEndpoint
+  a rdf:Property ;
+  rdfs:comment "URI expected to be used for redirect after authorization"@en ;
+  rdfs:isDefinedBy <> ;
+  rdfs:domain :Application ;
+  rdfs:label "Has Authorization Callback Endoint"@en .
 
 #############################################################################
 # Access Needs

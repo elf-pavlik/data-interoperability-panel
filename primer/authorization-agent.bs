@@ -1,21 +1,42 @@
-
 <pre class='metadata'>
 Title: Solid Application Interoperability - Authorization Agent Primer
 Shortname: sai-authorization-agent-primer
 Level: 1
 Status: CG-DRAFT
 Group: solidcg
-URL: https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html
+TR: https://solidproject.org/TR/sai-primer-authorization-agent
+ED: https://solidproject.org/TR/tag/sai-primer-authorization-agent-v0.1
+ED: https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html
 Repository: https://github.com/solid/data-interoperability-panel
 Inline Github Issues: title
 Boilerplate: issues-index no
 Local Boilerplate: logo yes
 Markup Shorthands: markdown yes
 Editor: elf Pavlik
-!Version: 0.1
+!Version: 0.2
 Abstract: Primer for libraries intended to be used by authorization agents.
 Boilerplate: omit conformance, omit abstract
 </pre>
+<script type="application/ld+json">
+{
+  "@context": {
+    "spec": "http://www.w3.org/ns/spec#",
+    "schema": "http://schema.org/",
+    "name": "schema:name",
+    "author": { "@id": "schema:author", "@type": "@id" },
+    "editor": { "@id": "schema:editor", "@type": "@id" }
+  },
+  "@id": "https://solid.github.io/data-interoperability-panel/primer/authorization-agent.html",
+  "@type": "spec:Primer",
+  "name": "SAI Authorization Agent Primer",
+  "author": [
+    "https://elf-pavlik.hackers4peace.net"
+  ],
+  "editor": [
+    "https://elf-pavlik.hackers4peace.net"
+  ]
+}
+</script>
 
 # Introduction # {#introduction}
 
@@ -96,7 +117,6 @@ shape tree assigned to the Data Registration.
   show: 6-100
   line-start: 1
   line-highlight: 3
-  </pre>
   </pre>
   <figcaption>Data Registration for projects in one of Alice's Data Registries</figcaption>
 </figure>
@@ -188,8 +208,8 @@ Its main purpose is to make [[#access-grant]] available to the registered agent.
 
 ## Social Agent Registration
 
-Social Agent Registration is created for a Social Agent. Besides [[##access-grant]]
-it can also reference a [[#reciprocal-registration]]
+Social Agent Registration is created for a Social Agent. Besides [[#access-grant]]
+it can also reference a [[#reciprocal-registration]].
 
 ### Reciprocal Registration ### {#reciprocal-registration}
 
@@ -212,10 +232,14 @@ link to the user's messaging app. On the other side, the Authorization Agent of 
 Independent of the platform, Authorization Agents should always allow a simple copy of the link by the sender
 (e.g., `navigator.clipboard.writeText`) and paste it by the recipient.
 
+## Roles
+
+[[SAI#role]] alows creating authorization can grant access to a team, a group of agents. Roles are only visible to to the agent who can access the Roles Registry and Authorization Registry. Roles can be also used to define a set of data owners, to whose data the authorization applies to. [[#generating-grants-from-authorizations]] describes that process in detail.
+
 ## Application Registration
 
 Application Registrations are created by the End-user for applications they use.
-Since applications do not own or share data, they will never have a [#reciprocal-registration].
+Since applications do not own or share data, they will never have a [[#reciprocal-registration]].
 
 ## Agent Registration Discovery ## {#agent-registration-discovery}
 
@@ -329,6 +353,62 @@ will also have zero or more data grants if it is inheriting from data authorizat
 
 Example of an implementation can be found in [[SAI-JS]] and [[SAI-JAVA]]
 
+<video autoplay loop muted playsinline width="100%">
+  <source src="roles.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+## Requesting Delegated Data Grants ## {#requesting-delegated-grants}
+
+[[SAI#delegation-issuance-endpoint]] specifies how to request delegation of access. Given following request:
+
+<figure>
+  <pre highlight=json>
+{
+  "grantee": "https://projectron.example/#id",
+  "grantedBy": "https://alice.example/#id",
+  "dataOwner": "https://bob.example/#id",
+  "registeredShapeTree": "http://data.example/shapetrees/pm#ProjectTree",
+  "hasDataRegistration": "https://work.bob.example/data/08a99a10/",
+  "hasStorage": "https://storage.bob.example/",
+  "scopeOfGrant": "http://www.w3.org/ns/solid/interop#AllFromRegistry",
+  "accessMode": [
+    "http://www.w3.org/ns/auth/acl#Read",
+    "http://www.w3.org/ns/auth/acl#Create"
+  ],
+  "hasInheritingGrant": [
+    {
+      "grantee": "https://projectron.example/#id",
+      "grantedBy": "https://alice.example/#id",
+      "dataOwner": "https://bob.example/#id",
+      "registeredShapeTree": "http://data.example/shapetrees/pm#TaskTree",
+      "hasDataRegistration": "https://work.bob.example/data/45e092cf/",
+      "hasStorage": "https://storage.bob.example/",
+      "scopeOfGrant": "http://www.w3.org/ns/solid/interop#Inherited",
+      "accessMode": [
+        "http://www.w3.org/ns/auth/acl#Read",
+        "http://www.w3.org/ns/auth/acl#Create"
+      ]
+    }
+  ]
+}
+  </pre>
+  <figcaption>Delegation request sent to Bob's Authorization Agent</figcaption>
+</figure>
+<figure>
+  <pre highlight=json>
+[
+  "https://auth.bob.example/grants/9849ssd6",
+  "https://auth.bob.example/grants/sioa97dj"
+]
+  </pre>
+  <figcaption>Delegation response received from Bob's Authorization Agent</figcaption>
+</figure>
+
+## Revoking Delegated Data Grants ## {#revoking-delegated-grants}
+
+Agent who delegated the grant (`grantedBy`) can revoke them by simply making `DELETE` HTTP request targeting the URL that identifies a grant. Orphaned grant with `Inherited` scope provide no access and they should be revoked together with the parent grant. Agent who owns the data (`dataOwner`) can revoke delegated grants at any time, agent who delegates them (`grantedBy`) should have their Authorization Agent subscribed to notifications to remove links to revoked grants from agent registries (access grants).
+
 <pre class="biblio">
 {
   "sai": {
@@ -365,8 +445,7 @@ Example of an implementation can be found in [[SAI-JS]] and [[SAI-JAVA]]
     "title": "Solid Application Interoperability - TypeScript implementation",
     "authors": [
       "elf Pavlik",
-      "Maciej Samoraj",
-      "Ángel Araya"
+      "Maciej Samoraj"
     ]
   },
   "sai-java": {
